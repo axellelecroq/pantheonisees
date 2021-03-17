@@ -1,18 +1,35 @@
 
-## Présentation
+## Le projet
+Cette application web a été développée par [Axelle Lecroq](https://github.com/axellelecroq) dans le cadre du Master TNAH de l'[École nationale des chartes](http://www.chartes.psl.eu/fr/cursus/master-technologies-numeriques-appliquees-histoire).
 
-## Installation de l'application 
+Les données exploitées sur ce site sont majoritairement issues d'un set de données publique et accessible sur
+[data.gouv](https://www.data.gouv.fr/fr/datasets/pantheonises/). Malgré tout, les dernières personnes inhumées au Panthéon ont été ajoutées par mes soins, ainsi que les liens vers les pages wikipédia et quelques photographies.
+Ce site a été dévéloppé avec Flask, framework open-source de développement web en Python. Néanmoins les languages CSS et HTML ont été largement utilisés pour le front-end du site. De nombreux éléments proviennent notamment de la collection d'outils Bootstrap. La base de données a été constituée à partir de SQLite et est gérée, au sein de la programmation, grâce à l'ORM SQLAlchemy.
 
-1. Installer pantheonisees à partir de la branche master du dépôt pantheonisees Github :
-`$ git clone  `
+En cas de problème avec l'utilisation de la base ou pour toute demande d’information supplémentaire, n’hésitez pas à me contacter.
 
-2. Installer Python via le [site](https://www.python.org/downloads/). Pour rappel : la plupart des systèmes Linux, intègre déjà Python.
+## Les fonctionnalités
+Accessible à tous :
+- découvrir les personnes inhumées au Panthéon
+- découvrir les visualisations de données
 
-3. Créer un environnement virtuel à l'aide de VirtualEnv. Dans votre terminal, taper la commande : `$ pip install virtualenv` pour installer VirtualEnv puis `$ virtualenv -p python3 env` ou sous windows : `$ virtualenv -p` puis `$ env:python3 env`
+Disponibles seulement pour les personnes ayant crée un compte :
+- ajouter un.e Panthéonisé.e
+- modifier les informations actuelles enregistrées d'un.e Panthéonisé.e
+- ajouter des photographies à un.e Panthéonisé.e
 
-4. Activer l'environnement virtuel via `$ source env/bin/activate`. Pour quitter l'environnement taper simplement `$ deactivate`.
+## Premier lancement
 
-5. Dans le terminal, se placer au niveau du fichier `requirements.txt`, puis installer les différents packages nécéssaires avec la commande suivante : `$ pip install -r requirements.txt`.
+Pré-requis : python3  
+*Vous pouvez l'installer via ce [site](https://www.python.org/downloads/). Pour rappel : la plupart des systèmes Linux intègrent déjà Python.*
 
-6. Dans le terminal, rentrer la commande `$ cd /`, Une fois dans le dossier lancer l'application avec la commande `$ python run.py` ou `$ python3 run.py` via le serveur local et selon votre version de python (`$ python --version ou -V`).
+1. Cloner ce dépôt git : `git clone https://github.com/axellelecroq/pantheonisees.git` et rentrer dedans
+2. Installer un environnement virtuel : `virtualenv -p python3 env` 
+3. Activer l'environnement virtuel via `source env/bin/activate`
+4. Installer requirements.txt : `pip install -r requirements.txt`
+5. Lancer l'application : `python3 pantheonisees/run.py`
 
+## Lancement 
+1. Aller dans le dossier de l'application
+2. Activez le virtualenv : `source env/bin/activate`
+3. Lancer l'application : `python3 pantheonisees/run.py`
