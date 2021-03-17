@@ -21,7 +21,7 @@ def connexion():
         ident = request.form.get("login")
         pw = request.form.get("password")
         user = User.connexion(ident, pw)
-        # Si l'utilisateur est bien dans la base de données
+        # Si l'utilisateur·rice est bien dans la base de données
         # et que les données envoyées correspondent avec celles stockées
         if user:
             # alors la connexion réussie
@@ -45,7 +45,7 @@ def deconnexion():
 
     # Vérification si l'utilisateur.rice est connectée
     if current_user.is_authenticated:
-        # afin de pouvoir le déconnecter
+        # afin de pouvoir le·la déconnecter
         logout_user()
         flash("Vous êtes déconnecté·e", category="success")
     else:
@@ -72,12 +72,12 @@ def inscription():
         is_unique = User.inscription(identifiant=ident, motdepasse=pw)
         if is_unique is False:
             errors.append(
-                "Cet identifiant est déjà utilisé par un autre utilisateur. Veuillez en proposer un nouveau."
+                "Cet identifiant est déjà utilisé par un·e autre utilisateur·rice. Veuillez en proposer un nouveau."
             )
 
         # Vérifications validité de l'identifiant
         elif not ident:
-            errors.append("Aucun identifiant renseginé")
+            errors.append("Aucun identifiant renseigné")
         elif len(ident) < 8:
             errors.append(
                 "Votre identifiant est trop court. Veuillez entrer un identifiant avec au moins 8 caractères."
@@ -93,7 +93,7 @@ def inscription():
 
         # Inscription si aucune erreur n'a été rencontrée
         if not errors:
-            flash("Vous êtes inscrit-e", category="success")
+            flash("Vous êtes inscrit·e", category="success")
             return redirect(url_for("accueil"))
         # Sinon envoi de toutes les erreurs sous forme de flashed messages
         else:
@@ -103,5 +103,5 @@ def inscription():
     return render_template("pages/login.html")
 
 
-# Définit la page où l'utilisateur-rice est redirigé-e quand ille n'est pas connecté.e
+# Définit la page où l'utilisateur·rice est redirigé·e quand iel n'est pas connecté·e
 login.login_view = connexion

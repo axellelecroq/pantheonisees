@@ -13,6 +13,7 @@ import requests
 
 """
 
+
 @app.route("/person/<int:person_id>")
 def person(person_id):
     """
@@ -36,7 +37,6 @@ def person(person_id):
 
     else:
         return render_template("errors/404.html"), 404
-
 
 
 @app.route("/person/create", methods=["GET", "POST"])
@@ -63,7 +63,7 @@ def create_person():
 
         ## LES INFOS OBLIGATOIRES ##
         # Si un champ obligatoire est vide, alors un message d'erreur
-        # est envoyé à l'utilisateur
+        # est envoyé à l'utilisateur·rice
         if (
             not form_infos["name"]
             or not form_infos["firstname"]
@@ -79,8 +79,8 @@ def create_person():
             )
             return render_template("pages/create.html")
 
-        # Vérification qu'il y a bien que des chiffres dans les dates
-        # Si il y a une lettre, alors un message d'erreur est envoyé à l'utilisateur
+        # Vérification qu'il y ait bien que des chiffres dans les dates
+        # Si il y a une lettre, alors un message d'erreur est envoyé à l'utilisateur·rice
         if (
             Pantheonises.is_date(form_infos["birth_date"]) == False
             and Pantheonises.is_date(form_infos["death_date"]) == False
@@ -98,7 +98,7 @@ def create_person():
             "Cette personne a bien été ajoutée à la base de donnée.",
             category="success",
         )
-        return redirect(url_for('toutes'))
+        return redirect(url_for("toutes"))
 
     else:
         return render_template("pages/create_person.html")
@@ -131,7 +131,7 @@ def update_person(person_id):
 
         ## LES INFOS OBLIGATOIRES ##
         # Si un champ obligatoire est vide, alors un message d'erreur
-        # est envoyé à l'utilisateur
+        # est envoyé à l'utilisateur·rice
         if (
             not form_infos["birth_date"]
             or not form_infos["death_date"]
@@ -145,9 +145,8 @@ def update_person(person_id):
             )
             return render_template("pages/update_person.html", result=person)
 
-        # Vérification qu'il y a bien que des chiffres dans les dates
-        # Si il y a une lettre, alors un message d'erreur est envoyé à l'utilisateur
-
+        # Vérification qu'il y ait bien que des chiffres dans les dates
+        # Si il y a une lettre, alors un message d'erreur est envoyé à l'utilisateur·rice
         if (
             Pantheonises.is_date(form_infos["birth_date"]) == False
             and Pantheonises.is_date(form_infos["death_date"]) == False
