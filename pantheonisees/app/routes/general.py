@@ -15,10 +15,10 @@ from ..app import *
 def accueil():
     """
     Route permettant l'affichage de la page d'accueil
-    :return: template accueil.html de la page d'accueil
+    :return: template home.html de la page d'accueil
     :rtype: template
     """
-    return render_template("pages/accueil.html")
+    return render_template("pages/home.html")
 
 
 @app.route("/toutes")
@@ -43,17 +43,17 @@ def toutes():
 def a_propos():
     """
     Route permettant l'affichage de la page à propos
-    :return: template a_propos.html
+    :return: template about.html
     :rtype: template
     """
-    return render_template("pages/a_propos.html")
+    return render_template("pages/about.html")
 
 
 @app.route("/chiffres")
 def chiffres():
     """
     Route permettant l'affichage de la page "en chiffre"
-    :return: template chiffres.html
+    :return: template dataviz.html
     :rtype: template
     """
-    return render_template("pages/chiffres.html")
+    return render_template("pages/dataviz.html")

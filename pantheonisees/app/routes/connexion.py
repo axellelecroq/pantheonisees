@@ -12,7 +12,7 @@ from ..modeles.donnees import *
 def connexion():
     """
     Route permettant la connexion de l'utilisateur.rice
-    :return: redirection vers la page accueil.html si la connexion a été effectuée avec succès
+    :return: redirection vers la page home.html si la connexion a été effectuée avec succès
              sinon templace connexion.html
     :rtype: template
     """
@@ -57,8 +57,8 @@ def deconnexion():
 def inscription():
     """
     Route permettant l'inscription d'un.e nouvel.le utilisateur.rice
-    :return: template inscription.html si erreur lors de l'inscription
-             ou redirection vers la page accueil.html si l'inscription a été effectuée avec succès.
+    :return: template login.html si erreur lors de l'inscription
+             ou redirection vers la page home.html si l'inscription a été effectuée avec succès.
     :rtype: template
     """
 
@@ -100,7 +100,7 @@ def inscription():
             for error in errors:
                 flash(error, category="error")
 
-    return render_template("pages/inscription.html")
+    return render_template("pages/login.html")
 
 
 # Définit la page où l'utilisateur-rice est redirigé-e quand ille n'est pas connecté.e

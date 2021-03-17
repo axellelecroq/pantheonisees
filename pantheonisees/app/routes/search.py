@@ -10,7 +10,7 @@ def recherche():
     Route permettant d'effectuer une recherche dans la base de donnés
     avec un ou plusieurs mots clés.
     Les résultats sont affichés par ordre alphabétique.
-    :return: template recherche.html
+    :return: template search.html
     :rtype: template
     """
     # Booléan qui permet de vérifier si
@@ -56,4 +56,4 @@ def recherche():
                 .all()
             )
 
-    return render_template("pages/recherche.html", search=no_search, results=resultats)
+    return render_template("pages/search.html", search=no_search, results=resultats)
