@@ -1,5 +1,5 @@
-
 ## Le projet
+### À propos
 Cette application web a été développée par [Axelle Lecroq](https://github.com/axellelecroq) dans le cadre du Master TNAH de l'[École nationale des chartes](http://www.chartes.psl.eu/fr/cursus/master-technologies-numeriques-appliquees-histoire).
 
 Les données exploitées sur ce site sont majoritairement issues d'un set de données publique et accessible sur
@@ -7,6 +7,44 @@ Les données exploitées sur ce site sont majoritairement issues d'un set de don
 Ce site a été dévéloppé avec Flask, framework open-source de développement web en Python. Néanmoins les languages CSS et HTML ont été largement utilisés pour le front-end du site. De nombreux éléments proviennent notamment de la collection d'outils Bootstrap. La base de données a été constituée à partir de SQLite et est gérée, au sein de la programmation, grâce à l'ORM SQLAlchemy.
 
 En cas de problème avec l'utilisation de la base ou pour toute demande d’information supplémentaire, n’hésitez pas à me contacter.
+
+### La structure
+```
+pantheonisees
+    ├── app
+    │   ├── modeles
+    │   │       └── donnees.py
+    │   ├── routes
+    │   │       ├── connexion.py
+    │   │       ├── crud_person.py
+    │   │       ├── errors.py
+    │   │       ├── general.py
+    │   │       └── search.py
+    │   ├── static
+    │   │       ├── css/...
+    │   │       └── images/...
+    │   ├── templates
+    │   │       ├── errors/...
+    │   │       ├── layout/default.html
+    │   │       ├── pages
+    │   │       │      ├── about.html
+    │   │       │      ├── connexion.html
+    │   │       │      ├── create_person.html
+    │   │       │      ├── dataviz.html
+    │   │       │      ├── home.html
+    │   │       │      ├── login.html
+    │   │       │      ├── person.html
+    │   │       │      ├── search.html
+    │   │       │      ├── toutes.html
+    │   │       │      └── update_person.html
+    │   │       ├── partials
+    │   │       │       ├── css.html
+    │   │       │       └── metadata.html
+    │   │       └── conteneur.html
+    │   └── app.py
+    ├── db_pantheonises.db
+    └── run.py
+```
 
 ### Les fonctionnalités
 Accessible à tous :
