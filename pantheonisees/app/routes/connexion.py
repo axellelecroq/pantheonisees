@@ -26,7 +26,7 @@ def connexion():
         if user:
             # alors la connexion réussie
             login_user(user)
-            flash("Vous êtes connecté-e", category="success")
+            flash("Vous êtes connecté·e", category="success")
             return redirect(url_for("accueil"))
         else:
             # sinon envoi d'un message d'erreur sous forme de flashed message.
