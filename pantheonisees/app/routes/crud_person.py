@@ -8,12 +8,11 @@ import requests
 
 """
 /person/<id>
+/person/create
 /person/<id>/modification
 
 """
 
-
-# Route pour l'affichage des personnes panthéonisées
 @app.route("/person/<int:person_id>")
 def person(person_id):
     """
@@ -39,11 +38,18 @@ def person(person_id):
         return render_template("errors/404.html"), 404
 
 
-# Route pour l'affichage des personnes panthéonisées
-# @login_required
+
 @app.route("/person/create", methods=["GET", "POST"])
 def create_person():
+    """
+    Route permettant l'ajout d'une personne panthéonisée
+    dans la base de données.
+    :return: template person.html si l'ajout a été effectué
+    avec succès, sinon template create_person.html
+    :rtype: template
+    """
     if request.method.lower() == "post":
+
         form_infos = {
             "name": request.form.get("name"),
             "firstname": request.form.get("firstname"),
@@ -99,7 +105,6 @@ def create_person():
 
 
 @app.route("/person/<int:person_id>/modification", methods=["GET", "POST"])
-# @login_required
 def update_person(person_id):
     """
     Route permettant d'actualiser les informations d'une personne panthéonisée.
