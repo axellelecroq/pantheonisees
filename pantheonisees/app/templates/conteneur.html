@@ -1,0 +1,56 @@
+{% extends 'layouts/default.html' %} {% block body %}
+
+<!-- header : navbar -->
+
+<nav class="navbar navbar-expand-lg" role="navigation">
+    <span><a href="{{ url_for('accueil')}}" title="Accueil"><i class="fas fa-home"></i></span>
+    <div class="container-fluid">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('toutes')}}">Tou·te·s</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('chiffres')}}">En chiffres</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('recherche')}}">Rechercher
+                </a>
+            </li>
+        </ul>
+        <div>
+            {% if current_user.is_authenticated %}
+            <a class="nav-link" href="{{ url_for('deconnexion') }}">Deconnexion</a> {% else %}
+            <a class="nav-link" href="{{url_for('connexion')}}">Connexion
+            </a>{% endif %}
+        </div>
+    </div>
+</nav>
+{% with messages = get_flashed_messages(category_filter=["success"]) %} {% if messages %}
+<nav class="navbar navbar-expand-lg" role="flashmessage">
+    {% for message in messages %}
+    <div class="alert flashSuccessMessages" role="alert">{{ message }}</div>
+    {% endfor %}
+    </div>
+    {% endif %} {% endwith %}
+</nav>
+
+{% block content %}{% endblock content %}
+
+<!-- footer -->
+<footer>
+    <hr class="style-one" />
+    <div class="container">
+
+
+        <div class="row text-center justify-content-center ">
+            <div>
+                <h6>
+                    <a href="{{url_for('a_propos')}}">À propos</a>
+                </h6>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+</footer>
+{% endblock body %}

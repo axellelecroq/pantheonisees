@@ -1,0 +1,37 @@
+{% extends 'conteneur.html' %} {% block content %}
+
+<div>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <br />
+        <h1 class="titre">{%block titre %}À propos{% endblock titre %}</h1>
+        <hr class="style-one" />
+        <div class="homeText">
+            <p>Cette application web a été développée par <a href="https://github.com/axellelecroq/" target="_blank">Axelle Lecroq</a> dans le cadre du Master TNAH de l'<a href="http://www.chartes.psl.eu/fr/cursus/master-technologies-numeriques-appliquees-histoire">École nationale des chartes</a>.
+            </p>
+            <p>Les données exploitées sur ce site sont majoritairement issues d'un set de données publique et accessible sur
+                <a href="https://www.data.gouv.fr/fr/datasets/pantheonises/">data.gouv</a>. Malgré tout, les dernières personnes inhumées au Panthéon ont été ajoutées par mes soins, ainsi que les liens vers les pages wikipédia et quelques photographies.</p>
+            <p>Ce site a été dévéloppé avec Flask, framework open-source de développement web en Python. Néanmoins les languages CSS et HTML ont été largement utilisé pour le front-end du site. De nombreux éléments proviennent notamment de la collection
+                d'outils Bootstrap. La base de donnée a été constituée à partir de SQLite et est gérée, au sein de la programmation, grâce à l'ORM SQLAlchemy.</p>
+            <p>En cas de problème avec l'utilisation de la base ou pour toute demande d’information supplémentaire, n’hésitez pas à me contacter:
+                <a href=" mailto:lecroq.axelle@gmail.com ">lecroq.axelle[at]gmail.com</a>
+            </p>
+            <br>
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+{% endblock content %}

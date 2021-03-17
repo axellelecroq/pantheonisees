@@ -1,0 +1,28 @@
+ {% extends 'conteneur.html' %} {% block content %}
+
+<div>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+
+        <h1>{% block titre %}Personnes panthéonisées{% endblock titre %}</h1>
+        <hr class="style-one" />
+        <div style="text-align: end;">
+            <a class="addNew" href="{{url_for('create_person')}}">Ajouter un.e Panthéonisé.e
+            </a>
+        </div>
+        <div>
+            <ul>
+                {% for person in toutes %}
+
+                <li>
+                    <a href="{{ url_for( 'person', person_id=person.id)}}">{{person.name}}, {{person.firstname}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <br>
+</div>
+
+{% endblock content %}

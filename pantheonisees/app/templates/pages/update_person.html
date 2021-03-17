@@ -1,0 +1,112 @@
+{% extends 'conteneur.html' %} {% block content %}
+
+<div>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <h2 class="resultsTable" style="color: #dab880">Modification des données de <b>{{result.name}}</b> {{result.firstname}}</h2>
+        <hr style="padding-bottom: 25px;" />
+        <br/> {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+        <div>
+            {% for category, message in messages %}
+            <p class="alert flaskMessage" role="alert">{{ message }}</p>
+            {% endfor %}
+        </div>{% endif %} {% endwith %}
+        <br/>
+        <p class="homeText" style="
+        padding-left: 60px;
+        padding-bottom: 20px;
+        font-style: italic;">Les champs marqués d'un astérix (*) sont obligatoires.
+        </p>
+        <form class="form-inline" enctype="multipart/form-data" action="" method="POST">
+            <table summary="Formulaire de modification">
+                <tbody class="personText ">
+                    <tr>
+                        <td class="personLabel ">Année de naissance*</td>
+                        <td><input class="searchInput" name="birthDate" type="text" value="{{result.birth}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="personLabel ">Date de décès*</td>
+                        <td><input class="searchInput" name="deathDate" type="text" value="{{result.death}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="personLabel ">Date de panthéonisation*</td>
+                        <td><input class="searchInput" name="pantheonisationDate" type="text" value="{{result.pantheonisation}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="personLabel ">Status*</td>
+                        <td><input class="searchInput" name="status" type="text" value="{{result.status}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="personLabel ">Lien wikipédia*</td>
+                        <td><input class="searchInput" name="wikiLink" type="text" value="{{result.wiki_link}}"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="personLabel ">Portrait</td>
+                        {% if result.image_id.portrait_path %}
+                        <td><img src="{{ result.image_id.portrait_path }} " width="150px "></td>
+                        <td><input type="file" name="portraitFile"></td>
+                    </tr>
+                    <tr>
+                        <td class="personLabel ">Description du portrait</td>
+                        <td><textarea class="searchInput" name="descPortrait" rows="3">{{result.image_id.portrait_desc}}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="personLabel ">Date du portrait</td>
+                        <td><input class="searchInput" name="portraitDate" type="text" value="{{result.image_id.date}}"></td>
+                    </tr>
+                    {%else%}
+                    <td><input type="file" name="portraitFile"></td>
+                    </tr>
+                    <tr>
+                        <td class="personLabel ">Description du portrait</td>
+                        <td><textarea class="searchInput" name="descPortrait" rows="3"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="personLabel ">Année du portrait</td>
+                        <td><input class="searchInput" name="portraitDate" type="text"></td>
+                    </tr>
+                    {%endif%}</tr>
+                    <tr>
+                        <td class="personLabel ">Tombe</td> {% if result.image_id.tomb_path %}
+                        <td><img src="{{ result.image_id.tomb_path }} " width="300px "></td>
+                        <td><input type="file" name="tombFile"></td>
+                    </tr>
+                    {%else%}
+                    <td><input type="file" name="tombFile"></td>
+                    </tr>
+                    {%endif%}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button class="searchSubmit" type="submit">valider</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <br/>
+    <div style="padding-left: 145px;">
+        {%if not result.image_id.tomb_path and not result.image_id.portrait_path %}
+        <p class="homeText" style="padding-left: 145px;">Aucune image n'est enregistrée pour cette personne.</p>
+        {% endif %}
+    </div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>{% endblock content %}

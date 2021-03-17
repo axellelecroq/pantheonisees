@@ -1,0 +1,88 @@
+{% extends 'conteneur.html' %} {% block content %}
+
+<div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+
+
+        <h1>{%block title%}Effectuer une recherche{%endblock title%}</h1>
+        <hr class="style-one" />
+        <form class="form-inline" action="{{url_for('recherche')}}" method="GET"></form>
+
+        <!-- L'attribut action est laissé vide Le formulaire est soumis à l'URL qui se trouve
+             actuellement dans la barre d'adresse. L'attribution action est laissée ici vide
+             afin que l'URL qui est envoyée par le formulaire reste la même que celle sur laquelle
+             nous sommes déjà. Cela permet ainsi que les résultats de recherche apparaissent
+             sous la barre de recherche.  -->
+
+        <form class="form-inline" action="" method="GET">
+            <table summary="Formulaire de recherche">
+                <tbody>
+                    <tr>
+                        <td><label class="
+                      searchLabel">Nom</label></td>
+                        <td><input class="searchInput" name="name" type="text" aria-label="search">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="
+                      searchLabel">Prénom</label></td>
+                        <td><input class="searchInput" name="firstname" type="text" aria-label="search">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="
+                      searchLabel">Année de panthéonisation</label></td>
+                        <td><input class="searchInput" name="date" type="text" aria-label="search">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="
+                      searchLabel">Status</label></td>
+                        <td><input class="searchInput" name="status" type="text" aria-label="search">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button class="searchSubmit" type="submit">valider</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- <div class="dropdown ">
+                <button class="btn btn-secondary dropdown-toggle " type="button " id="dropdownMenuButton " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false ">
+                  Rechercher par
+                </button>
+                <div class="dropdown-menu " aria-labelledby="dropdownMenuButton ">
+                  <a class="dropdown-item " href="# ">Action</a>
+                  <a class="dropdown-item " href="# ">Another action</a>
+                  <a class="dropdown-item " href="# ">Something else here</a>
+                </div>
+              </div> -->
+        </form>
+
+        <br> {% if search == True%}
+        <p>Veuillez entrer un ou plusieurs éléments de recherche.</p>
+        {% elif results%}
+        <p>Voici les résultats correspondants à votre recherche:</p>
+        <ul>
+            {% for person in results %}
+            <li class="results ">
+                <a href="{{ url_for( 'person', person_id=person.id)}}">{{person.name}}, <em>{{person.firstname}}</a></em>
+            </li>
+            {% endfor %} {% else %}
+            <br>
+            <br>
+            <p>Aucun résultat ne correspond à votre recherche.</p>
+
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+
+{% endblock %}

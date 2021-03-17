@@ -1,0 +1,63 @@
+{% extends 'conteneur.html' %} {% block content %}
+
+<div>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <br />
+        <h1 class="titre">{%block titre %}Se connecter{% endblock titre %}</h1>
+        <hr class="style-one" />
+        <form method="POST" class="form-inline" action="{{ url_for('connexion') }} ">
+            <table summary="Formulaire d'inscription">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label class="
+                            searchLabel">Identifiant</label></td>
+                        <td><input class="searchInput" type="text " name="login" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="
+                        searchLabel">Mot de passe</label>
+                        </td>
+                        <td><input type="password" name="password" class="searchInput" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td> <button class="searchSubmit" type="submit ">S'inscrire</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <br/> {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+        <div>
+            {% for category, message in messages %}
+            <p class="alert flaskMessage" role="alert">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
+        <br/>
+        <p>
+            <a class="formText" href="{{ url_for('inscription') }} ">Pas encore inscrit.e?</a>
+        </p>
+        <br/>
+        <hr/>
+        <p><i class="fas fa-long-arrow-alt-left backArrow"><a class="backPageLink" href="{{url_for('accueil')}}">Retour vers la page d'accueil</a></i>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+{% endblock content %}

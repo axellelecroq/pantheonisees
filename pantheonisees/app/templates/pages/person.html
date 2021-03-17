@@ -1,0 +1,74 @@
+{% extends 'conteneur.html' %} {% block content %}
+
+<div>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <h1 class="resultsTable"><b>{{result.name}}</b>, {{result.firstname}}</h2>
+
+            <table summary="Informations">
+                <tbody class="personText ">
+                    <tr>
+                        <td class="personLabel ">Année de naissance</td>
+                        <td>{{result.birth}}</td>
+                    </tr>
+                    <tr>
+                        <td class="personLabel ">Date de décès</td>
+                        <td>{{result.death}}</td>
+                    </tr>
+                    <tr>
+                        <td class="personLabel ">Date de panthéonisation</td>
+                        <td>{{result.pantheonisation}}</td>
+                    </tr>
+                    <tr>
+                        <td class="personLabel ">Status</td>
+                        <td>{{result.status}}</td>
+                    </tr>
+                    <tr>
+                        <td class="personLabel ">En savoir plus</td>
+                        <td>
+                            <a href="{{result.wiki_link}} " target="_blank ">lien wikipédia</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="rounded float-right">{% if result.image_id.portrait_path %}
+                <p><img src="{{ result.image_id.portrait_path }} " width="150px"></p>
+                {%if result.image_id.portrait_path%}
+                <p class="legendText">{{ result.image_id.portrait_desc}} {%if result.image_id.date%}, {{result.image_id.date}}
+                </p>
+                {% endif %} {%else%}
+                <p class="legendText">Portrait de {{result.name}} {{result.firstname}}, {%if result.image_id.date%}, {{result.image_id.date}}
+                </p>
+                {% endif %} {% endif %}</div>
+            {% endif %} {% if result.image_id.tomb_path %}
+            <div class="rounded float-right">
+                <p><img src="{{ result.image_id.tomb_path }} " width="300px "></p>
+                <p class="legendText">Tombeau au Panthéon de {{result.name}} {{result.firstname}}. {% endif %}
+                </p>
+            </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>
+    {% if current_user.is_authenticated %}
+    <a class="toModifyLink" href="{{url_for( 'update_person', person_id=result.id)}} ">Modifier des informations</a> {%else%}
+    <a class="toModifyLink" href="{{url_for('connexion')}}">Modifier des informations</a>{% endif %}
+</p>{%if back_page%}
+<p><i class="fas fa-long-arrow-alt-left backArrow "><a class="backPageLink " href="{{back_page}} ">Retour vers les résultats</a>
+</i>
+</p>
+{%endif%}
+<br>
+<br>
+<br>
+<br>{% endblock content %}
