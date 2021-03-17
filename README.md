@@ -8,7 +8,7 @@ Ce site a été dévéloppé avec Flask, framework open-source de développement
 
 En cas de problème avec l'utilisation de la base ou pour toute demande d’information supplémentaire, n’hésitez pas à me contacter.
 
-## Les fonctionnalités
+### Les fonctionnalités
 Accessible à tous :
 - découvrir les personnes inhumées au Panthéon
 - découvrir les visualisations de données
@@ -18,7 +18,8 @@ Disponibles seulement pour les personnes ayant crée un compte :
 - modifier les informations actuelles enregistrées d'un.e Panthéonisé.e
 - ajouter des photographies à un.e Panthéonisé.e
 
-## Premier lancement
+## Installer et lancer l'application
+### Premier lancement
 
 Pré-requis : python3  
 *Vous pouvez l'installer via ce [site](https://www.python.org/downloads/). Pour rappel : la plupart des systèmes Linux intègrent déjà Python.*
@@ -29,7 +30,7 @@ Pré-requis : python3
 4. Installer requirements.txt : `pip install -r requirements.txt`
 5. Lancer l'application : `python3 pantheonisees/run.py`
 
-## Lancement 
+### Lancement 
 1. Aller dans le dossier de l'application
 2. Activez le virtualenv : `source env/bin/activate`
 3. Lancer l'application : `python3 pantheonisees/run.py`
