@@ -1,7 +1,7 @@
 from flask import render_template, request
 from sqlalchemy import and_
 from ..app import *
-from ..modeles.donnees import *
+from ..modeles.data import *
 
 
 @app.route("/recherche")

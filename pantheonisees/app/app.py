@@ -60,5 +60,5 @@ db = SQLAlchemy(app)
 
 
 # Imports locaux
-from .modeles.donnees import *
+from .modeles.data import *
 from .routes import general, search, errors, connexion, crud_person
