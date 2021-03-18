@@ -202,11 +202,13 @@ class User(UserMixin, db.Model):
     )
     username = db.Column(db.Text, unique=True, nullable=False)
     password = db.Column(db.Text, nullable=False)
+    email = db.Column(db.Text, nullable=False)
 
-    def __init__(self, id, username, password):
+    def __init__(self, id, username, password, email):
         self.id = id
         self.username = username
         self.password = password
+        self.email = email
 
     @staticmethod
     def connexion(identifiant: str, motdepasse: str):
@@ -220,29 +222,44 @@ class User(UserMixin, db.Model):
             return user
 
     @staticmethod
-    def inscription(identifiant: str, motdepasse: str) -> bool:
+    def inscription(identifiant: str, motdepasse: str, mail: str) -> bool:
         """
         Méthode permettant d'inscrire un.e l'utilisateur.rice
         :param identifiant : str
         :param motdepasse : str
         """
-        unique = User.query.filter(User.username == identifiant).count()
+
         user_count = User.query.filter(User.id).count()
 
-        if unique:
-            return False
-        utilisateur = User(
+        user = User(
             id=user_count + 1,
             username=identifiant,
             password=generate_password_hash(motdepasse),
+            email=mail,
         )
+
         try:
-            db.session.add(utilisateur)
+            db.session.add(user)
             db.session.commit()
             return True
         except Exception as E:
             print(E)
             return False
+
+    @staticmethod
+    def is_unique(identifiant: str):
+        user = User.query.filter(User.username == identifiant).count()
+        # email = User.query.filter(User.email = mail).count()
+        # if email:
+        #     flash(
+        #         "Cet email a déjà un compte.",
+        #         category="error",
+        #     )
+        #     return False
+        if user:
+            return False
+        else:
+            return True
 
     def get_id(self) -> int:
         return self.id
