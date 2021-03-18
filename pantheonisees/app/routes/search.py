@@ -1,7 +1,7 @@
 from flask import render_template, request
 from sqlalchemy import and_
 from ..app import *
-from ..modeles.data import *
+from ..modeles.pantheonisees import *
 
 
 @app.route("/recherche")
