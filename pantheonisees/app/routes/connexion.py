@@ -91,7 +91,7 @@ def inscription():
             )
 
         # Verifications validité email
-        if User.is_valid_email(email) == False :
+        if User.is_valid_email(email) == False:
             errors.append("L'email proposé n'est pas valide. ")
 
         # Inscription si aucune erreur n'a été rencontrée
