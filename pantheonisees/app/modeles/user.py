@@ -60,6 +60,13 @@ class User(UserMixin, db.Model):
 
     @staticmethod
     def is_unique(identifiant: str, mail: str):
+        """
+        Méthode permettant de vérifier que le mail et l'identifiant
+        proposés le.la nouveau.elle utilisateur.rice
+        :param identifiant : str
+        :param mail : str
+        :rtype: bool
+        """
         user = User.query.filter(User.username == identifiant).count()
         email = User.query.filter(User.email == mail).count()
         if email:
@@ -78,7 +85,13 @@ class User(UserMixin, db.Model):
             return True
 
     @staticmethod
-    def is_valid_email(mail) -> bool: 
+    def is_valid_email(mail) -> bool:
+        """
+        Méthode permettant de vérifier que le mail proposé
+        est valide ou non
+        :param mail : str
+        :rtype: bool
+        """ 
         if validate_email(mail) == True:
             return True
         else : return False 
