@@ -1,9 +1,11 @@
 from ..app import *
-from . import user, pantheonisees
+from . import user, images
 
 import requests
 
+
 class Pantheonises(db.Model):
+    __tablename__ = "Pantheonises"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.Text)
     firstname = db.Column(db.Text)
@@ -14,7 +16,7 @@ class Pantheonises(db.Model):
     sex = db.Column(db.Text)
     wiki_link = db.Column(db.Text)
 
-    image_id = db.relationship("Images", backref="pantheonises", uselist=False)
+    image_id = db.relationship("Images", backref="Pantheonises.id", lazy="dynamic")
 
     def __init__(
         self,
@@ -112,3 +114,7 @@ class Pantheonises(db.Model):
         except Exception as E:
             print(E)
             return False
+
+
+db.session.commit()
+db.create_all()

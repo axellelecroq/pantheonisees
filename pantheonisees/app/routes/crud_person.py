@@ -3,6 +3,7 @@ import requests
 
 from ..app import *
 from ..modeles.pantheonisees import *
+from ..modeles.user import *
 from ..modeles.images import *
 
 

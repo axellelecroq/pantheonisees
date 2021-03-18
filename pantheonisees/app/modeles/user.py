@@ -7,8 +7,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from validate_email import validate_email
 
 
-
 class User(UserMixin, db.Model):
+    __tablename__ = "User"
     id = db.Column(
         db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True
     )
@@ -91,10 +91,11 @@ class User(UserMixin, db.Model):
         est valide ou non
         :param mail : str
         :rtype: bool
-        """ 
+        """
         if validate_email(mail) == True:
             return True
-        else : return False 
+        else:
+            return False
 
     def get_id(self) -> int:
         return self.id
@@ -109,5 +110,5 @@ def charger_utilisateur(identifiant: int):
 # de faire les requêtes nécéssaires pour finaliser les
 # opérations d'ajouts dans la table.
 
-# db.session.commit()
+db.session.commit()
 db.create_all()

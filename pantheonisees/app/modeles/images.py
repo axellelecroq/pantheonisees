@@ -3,11 +3,10 @@ from . import user, pantheonisees
 
 from werkzeug.utils import secure_filename
 
-
-
 class Images(db.Model):
+    __tablename__ = "Images"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    pers_id = db.Column(db.Integer, db.ForeignKey("pantheonises.id"))
+    pers_id = db.Column(db.Integer, db.ForeignKey("Pantheonises.id"))
     portrait_path = db.Column(db.Text)
     portrait_desc = db.Column(db.Text)
     date = db.Column(db.Text)
@@ -81,3 +80,7 @@ class Images(db.Model):
             except Exception as E:
                 print(E)
                 return False
+
+
+db.session.commit()
+db.create_all()
