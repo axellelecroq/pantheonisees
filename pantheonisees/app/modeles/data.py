@@ -247,16 +247,20 @@ class User(UserMixin, db.Model):
             return False
 
     @staticmethod
-    def is_unique(identifiant: str):
+    def is_unique(identifiant: str, mail: str):
         user = User.query.filter(User.username == identifiant).count()
-        # email = User.query.filter(User.email = mail).count()
-        # if email:
-        #     flash(
-        #         "Cet email a déjà un compte.",
-        #         category="error",
-        #     )
-        #     return False
-        if user:
+        email = User.query.filter(User.email == mail).count()
+        if email:
+            flash(
+                "Cet email a déjà un compte.",
+                category="error",
+            )
+            return False
+        elif user:
+            flash(
+                "Cet identifiant est déjà utilisé par un·e autre utilisateur·rice. Veuillez en proposer un nouveau.",
+                category="error",
+            )
             return False
         else:
             return True

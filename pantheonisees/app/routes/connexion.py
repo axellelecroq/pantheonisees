@@ -66,14 +66,13 @@ def inscription():
         # Inscription de l'utilisateur-rice
         ident = request.form.get("login")
         pw = request.form.get("password")
+        email = request.form.get("email")
         errors = []
 
         # Vérification si le nom d'utilisateur.rice est disponible
-        is_unique = User.inscription(identifiant=ident, motdepasse=pw)
+        is_unique = User.is_unique(identifiant=ident, mail=email)
         if is_unique is False:
-            errors.append(
-                "Cet identifiant est déjà utilisé par un·e autre utilisateur·rice. Veuillez en proposer un nouveau."
-            )
+            return render_template("pages/login.html")
 
         # Vérifications validité de l'identifiant
         elif not ident:
@@ -93,6 +92,7 @@ def inscription():
 
         # Inscription si aucune erreur n'a été rencontrée
         if not errors:
+            User.inscription(ident, pw, email)
             flash("Vous êtes inscrit·e", category="success")
             return redirect(url_for("accueil"))
         # Sinon envoi de toutes les erreurs sous forme de flashed messages
