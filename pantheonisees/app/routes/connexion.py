@@ -1,7 +1,6 @@
 # Import librairies installées via PIP
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user
-from validate_email import validate_email
 
 # Import de mes propres modules
 from app.app import app, login
@@ -92,7 +91,7 @@ def inscription():
             )
 
         # Verifications validité email
-        if not validate_email(email):
+        if User.is_valid_email(email) == False :
             errors.append("L'email proposé n'est pas valide. ")
 
         # Inscription si aucune erreur n'a été rencontrée

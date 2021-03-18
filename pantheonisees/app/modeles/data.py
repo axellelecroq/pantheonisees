@@ -5,6 +5,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 import requests
+from validate_email import validate_email
 
 
 class Pantheonises(db.Model):
@@ -264,6 +265,12 @@ class User(UserMixin, db.Model):
             return False
         else:
             return True
+
+    @staticmethod
+    def is_valid_email(mail) -> bool: 
+        if validate_email(mail) == True:
+            return True
+        else : return False 
 
     def get_id(self) -> int:
         return self.id
