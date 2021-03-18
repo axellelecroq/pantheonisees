@@ -9,8 +9,10 @@
         <h1>{% block titre %}Personnes panthéonisées{% endblock titre %}</h1>
         <hr class="style-one" />
         <div style="text-align: end;">
+            {% if current_user.is_authenticated %}
             <a class="addNew" href="{{url_for('create_person')}}">Ajouter un.e Panthéonisé.e
-            </a>
+                </a>{%else%}
+            <a class="toModifyLink" href="{{url_for('connexion')}}">Ajouter un.e Panthéonisé.e</a>{% endif %}
         </div>
         <div>
             <ul>
