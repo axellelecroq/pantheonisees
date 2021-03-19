@@ -217,3 +217,8 @@ def update_person(person_id):
         return render_template("pages/update_person.html", result=person)
     else:
         return render_template("errors/404.html"), 404
+
+@app.route("/person/<int:person_id>/delete", methods=["GET", "POST"])
+def delete_person(person_id):
+    person = Pantheonises.query.filter(Pantheonises.id == person_id).first()
+    return render_template("pages/person_delete.html", result=person)

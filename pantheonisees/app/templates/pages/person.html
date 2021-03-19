@@ -61,8 +61,11 @@
 <br>
 <p>
     {% if current_user.is_authenticated %}
-    <a class="toModifyLink" href="{{url_for( 'update_person', person_id=result.id)}} ">Modifier ou ajouter des informations</a> {%else%}
-    <a class="toModifyLink" href="{{url_for('connexion')}}">Modifier ou ajouter des informations</a>{% endif %}
+    <a class="toModifyLink" href="{{url_for( 'update_person', person_id=result.id)}} ">Modifier ou ajouter des informations</a>
+</p>
+<p><a class="toModifyLink" href="{{url_for( 'delete_person', person_id=result.id)}} ">Supprimer cette personne panthéonisée</a> {%else%}
+    <a class="toModifyLink" href="{{url_for('connexion')}}">Modifier ou ajouter des informations</a></p>
+<p><a class="toModifyLink" href="{{url_for('connexion')}}">Supprimer cette personne</a>{% endif %}
 </p>{%if back_page%}
 <p><i class="fas fa-long-arrow-alt-left backArrow "><a class="backPageLink " href="{{back_page}} ">Retour vers les résultats</a>
 </i>
