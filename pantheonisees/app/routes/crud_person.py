@@ -1,10 +1,11 @@
 from flask import render_template, request, flash, redirect, url_for
-import requests
-
 from ..app import *
+
+from app.modeles import *
 from ..modeles.pantheonisees import *
 from ..modeles.user import *
 from ..modeles.images import *
+import requests
 
 
 """
@@ -184,7 +185,7 @@ def update_person(person_id):
             # y en a aucun déjà enregistré
             p_path = "/static/images/" + portrait_file.filename
 
-        # Ajout dans le dictionnaire du chemin vers le portrait
+            # Ajout dans le dictionnaire du chemin vers le portrait
         form_infos["p_path"] = p_path
 
         ## Mêmes étapes pour la tombe que précédemment

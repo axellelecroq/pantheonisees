@@ -3,6 +3,7 @@ from . import user, pantheonisees
 
 from werkzeug.utils import secure_filename
 
+
 class Images(db.Model):
     __tablename__ = "Images"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
