@@ -2,9 +2,7 @@ from flask import render_template, request, flash, redirect, url_for
 import requests
 
 from ..app import *
-from ..modeles.pantheonisees import *
-from ..modeles.user import *
-from ..modeles.images import *
+from ..modeles.data import *
 
 
 """
