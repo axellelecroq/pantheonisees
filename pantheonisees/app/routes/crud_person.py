@@ -175,16 +175,15 @@ def update_person(person_id):
             # Enregistrement du fichier  dans l'application
             Images.upload_image(portrait_file)
 
-        if person.image_id.portrait_path:
-            p_path = person.image_id.portrait_path
-
-        else:
-            # Création du nom du chemin du portrait s'il
-            # y en a aucun déjà enregistré
-            p_path = "/static/images/" + portrait_file.filename
-
-        # Ajout dans le dictionnaire du chemin vers le portrait
-        form_infos["p_path"] = p_path
+            if person.image_id:
+                if person.image_id.portrait_path:
+                    form_infos["p_path"] = person.image_id.portrait_path
+                else:
+                    form_infos["p_path"] = "/static/images/" + portrait_file.filename
+            else:
+                # Création du nom du chemin du portrait s'il
+                # y en a aucun déjà enregistré
+                form_infos["p_path"] = "/static/images/" + portrait_file.filename
 
         ## Mêmes étapes pour la tombe que précédemment
         if request.files["tombFile"]:
@@ -196,12 +195,13 @@ def update_person(person_id):
 
             Images.upload_image(tomb_file)
 
-        if person.image_id.tomb_path:
-            t_path = person.image_id.tomb_path
+        if person.image_id:
+            if person.image_id.tomb_path:
+                form_infos["t_path"] = person.image_id.tomb_path
+            else:
+                form_infos["t_path"] = "/static/images/" + tomb_file.filename
         else:
-            t_path = "/static/images/" + tomb_file.filename
-
-        form_infos["t_path"] = t_path
+            form_infos["t_path"] = "/static/images/" + tomb_file.filename
 
         # Enregistrement des donnnées dans la base
         Images.add_data_images(person_id, form_infos)
