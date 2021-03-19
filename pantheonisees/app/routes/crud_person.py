@@ -1,5 +1,6 @@
 from flask import render_template, request, flash, redirect, url_for
 import requests
+import unidecode
 
 from ..app import *
 from ..modeles.data import *
@@ -167,9 +168,9 @@ def update_person(person_id):
             portrait_file = request.files["portraitFile"]
 
             # Renommage du fichier
-            portrait_file.filename = "{}_{}.jpg".format(
-                person.name.lower(), person.firstname.lower()
-            )
+            name = unidecode.unidecode(person.name.replace(" ", "-").lower())
+            firstname = unidecode.unidecode(person.firstname.replace(" ", "-").lower())
+            portrait_file.filename = "{}_{}.jpg".format(name, firstname)
 
             # Enregistrement du fichier  dans l'application
             Images.upload_image(portrait_file)
@@ -189,9 +190,9 @@ def update_person(person_id):
         if request.files["tombFile"]:
 
             tomb_file = request.files["tombFile"]
-            tomb_file.filename = "{}_{}_tomb.jpg".format(
-                person.name.lower(), person.firstname.lower()
-            )
+            name = unidecode.unidecode(person.name.replace(" ", "-").lower())
+            firstname = unidecode.unidecode(person.firstname.replace(" ", "-").lower())
+            tomb_file.filename = "{}_{}_tomb.jpg".format(name, firstname)
 
             Images.upload_image(tomb_file)
 
