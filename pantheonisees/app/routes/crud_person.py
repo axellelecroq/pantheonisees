@@ -45,7 +45,7 @@ def create_person():
     Route permettant l'ajout d'une personne panthéonisée
     dans la base de données.
     :return: template person.html si l'ajout a été effectué
-    avec succès, sinon template create_person.html
+    avec succès, sinon template person_create.html
     :rtype: template
     """
     if request.method.lower() == "post":
@@ -101,7 +101,7 @@ def create_person():
         return redirect(url_for("toutes"))
 
     else:
-        return render_template("pages/create_person.html")
+        return render_template("pages/person_create.html")
 
 
 @app.route("/person/<int:person_id>/modification", methods=["GET", "POST"])
@@ -143,7 +143,7 @@ def update_person(person_id):
                 "Tous les champs obligatoires doivent être renseignés.",
                 category="error",
             )
-            return render_template("pages/update_person.html", result=person)
+            return render_template("pages/person_update.html", result=person)
 
         # Vérification qu'il y ait bien que des chiffres dans les dates
         # Si il y a une lettre, alors un message d'erreur est envoyé à l'utilisateur·rice
@@ -155,7 +155,7 @@ def update_person(person_id):
             flash(
                 "Une des dates obligatoires entrées n'est pas valide.", category="error"
             )
-            return render_template("pages/update_person.html", result=person)
+            return render_template("pages/person_update.html", result=person)
         # Si non, les informations sont enregistrées dans la base de données.
         else:
             Pantheonises.add_required_info(person_id, form_infos)
@@ -214,7 +214,7 @@ def update_person(person_id):
         person = Pantheonises.query.filter(Pantheonises.id == person_id).first()
         # Récupération de l'url afin de créer un lien vers la page
         # des résultats une fois la personne panthéonisée consultée
-        return render_template("pages/update_person.html", result=person)
+        return render_template("pages/person_update.html", result=person)
     else:
         return render_template("errors/404.html"), 404
 

@@ -31,14 +31,15 @@ pantheonisees
     │   │       ├── pages
     │   │       │      ├── about.html
     │   │       │      ├── connexion.html
-    │   │       │      ├── create_person.html
     │   │       │      ├── dataviz.html
     │   │       │      ├── home.html
     │   │       │      ├── login.html
+    │   │       │      ├── person_create.html
+    │   │       │      ├── person_delete.html
+    │   │       │      ├── person_update.html
     │   │       │      ├── person.html
     │   │       │      ├── search.html
-    │   │       │      ├── toutes.html
-    │   │       │      └── update_person.html
+    │   │       │      └── toutes.html
     │   │       ├── partials
     │   │       │       ├── css.html
     │   │       │       └── metadata.html
