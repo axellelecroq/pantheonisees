@@ -26,20 +26,20 @@
                     </tr>
                     <tr>
                         <td class="personLabel ">En savoir plus</td>
-                        <td>
-                            <a href="{{result.wiki_link}}" target="_blank ">lien wikipédia</a></td>
+                        <td>{{result.wiki_link}}
+                        </td>
                     </tr>
                     <tr>
                         <td class="personLabel">Portrait</td>
                         <td>
-                            {% if result.image_id.portrait_path %} {{result.image_id.portrait_path}} {%else%} Aucune {%endif%}
+                            {% if result.image_id.portrait_path %}Image enregistrée {%else%} Aucune {%endif%}
                         </td>
 
                     </tr>
                     <tr>
                         <td class="personLabel ">Tombe</td>
                         <td>
-                            {% if result.image_id.tomb_path %} {{result.image_id.tomb_path}} {%else%} Aucune {%endif%}
+                            {% if result.image_id.tomb_path %}Image enregistrée {%else%} Aucune {%endif%}
                         </td>
                     </tr>
 
@@ -60,15 +60,6 @@
                 </form>
             </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <br>
     <br>
     <br>
