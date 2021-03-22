@@ -182,13 +182,13 @@ def update_person(person_id):
             Images.upload_image(portrait_file)
 
             # Création de la chaîne de charactère pour le chemin vers l'image
-            if person.image_id:
-                if person.image_id.portrait_path:
-                    form_infos["p_path"] = person.image_id.portrait_path
-                else:
-                    form_infos["p_path"] = "/static/images/" + portrait_file.filename
+        if person.image_id:
+            if person.image_id.portrait_path:
+                form_infos["p_path"] = person.image_id.portrait_path
             else:
                 form_infos["p_path"] = "/static/images/" + portrait_file.filename
+        else:
+            form_infos["p_path"] = "/static/images/" + portrait_file.filename
 
 
         if request.files["tombFile"]:
@@ -208,13 +208,13 @@ def update_person(person_id):
             Images.upload_image(tomb_file) 
 
             # 3.
-            if person.image_id:
-                if person.image_id.tomb_path:
-                    form_infos["t_path"] = person.image_id.tomb_path
-                else:
-                    form_infos["t_path"] = "/static/images/" + tomb_file.filename
+        if person.image_id:
+            if person.image_id.tomb_path:
+                form_infos["t_path"] = person.image_id.tomb_path
             else:
                 form_infos["t_path"] = "/static/images/" + tomb_file.filename
+        else:
+            form_infos["t_path"] = "/static/images/" + tomb_file.filename
 
         # 4. 
         Images.add_data_images(person_id, form_infos)
@@ -243,5 +243,5 @@ def delete_person(person_id):
     :rtype: template
     """
     person = Pantheonises.query.filter(Pantheonises.id == person_id).first()
-    
+
     return render_template("pages/person_delete.html", result=person)
