@@ -195,13 +195,13 @@ def update_person(person_id):
 
             Images.upload_image(tomb_file)
 
-        if person.image_id:
-            if person.image_id.tomb_path:
-                form_infos["t_path"] = person.image_id.tomb_path
+            if person.image_id:
+                if person.image_id.tomb_path:
+                    form_infos["t_path"] = person.image_id.tomb_path
+                else:
+                    form_infos["t_path"] = "/static/images/" + tomb_file.filename
             else:
                 form_infos["t_path"] = "/static/images/" + tomb_file.filename
-        else:
-            form_infos["t_path"] = "/static/images/" + tomb_file.filename
 
         # Enregistrement des donnnées dans la base
         Images.add_data_images(person_id, form_infos)
@@ -217,6 +217,7 @@ def update_person(person_id):
         return render_template("pages/person_update.html", result=person)
     else:
         return render_template("errors/404.html"), 404
+
 
 @app.route("/person/<int:person_id>/delete", methods=["GET", "POST"])
 def delete_person(person_id):
