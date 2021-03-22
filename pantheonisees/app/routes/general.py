@@ -10,6 +10,7 @@ from ..modeles.data import *
 /chiffres
 /a_propos 
 
+
 """
 
 
@@ -37,6 +38,7 @@ def toutes():
     all_person = Pantheonises.query.order_by(Pantheonises.name).all()
 
     return render_template("pages/toutes.html", toutes=all_person)
+
 
 
 @app.route("/a_propos")

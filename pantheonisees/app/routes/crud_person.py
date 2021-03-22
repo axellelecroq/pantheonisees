@@ -10,6 +10,7 @@ from ..modeles.data import *
 /person/<id>
 /person/create
 /person/<id>/modification
+/person/<id>/delete
 
 """
 
@@ -235,5 +236,12 @@ def update_person(person_id):
 
 @app.route("/person/<int:person_id>/delete", methods=["GET", "POST"])
 def delete_person(person_id):
+    """
+    Route permettant de supprimer une personne panthéonisée de la base de données
+    :param person_id : int
+    :return: template toutes.html
+    :rtype: template
+    """
     person = Pantheonises.query.filter(Pantheonises.id == person_id).first()
+    
     return render_template("pages/person_delete.html", result=person)
