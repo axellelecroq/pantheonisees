@@ -7,8 +7,8 @@ from ..modeles.data import *
 """
 /
 /toutes
-/a_propos
-/chiffres 
+/chiffres
+/a_propos 
 
 """
 
@@ -39,8 +39,6 @@ def toutes():
     return render_template("pages/toutes.html", toutes=all_person)
 
 
-# ROUTES DES PAGES ANNEXES
-# Route vers la page à propos
 @app.route("/a_propos")
 def a_propos():
     """

@@ -280,7 +280,7 @@ class User(UserMixin, db.Model):
         est valide ou non
         :param mail : str
         :rtype: bool
-        """ 
+        """
         if validate_email(mail) == True:
             return True
         else:

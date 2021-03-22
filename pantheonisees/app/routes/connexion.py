@@ -43,7 +43,7 @@ def deconnexion():
     :rtype: template
     """
 
-    # Vérification si l'utilisateur.rice est connectée
+    # Vérification si l'utilisateur·rice est connectée
     if current_user.is_authenticated:
         # afin de pouvoir le·la déconnecter
         logout_user()
