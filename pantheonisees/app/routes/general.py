@@ -40,7 +40,6 @@ def toutes():
     return render_template("pages/toutes.html", toutes=all_person)
 
 
-
 @app.route("/a_propos")
 def a_propos():
     """

@@ -134,7 +134,7 @@ def update_person(person_id):
             "t_path": "",
         }
 
-                    ## LES INFOS OBLIGATOIRES ##
+        ## LES INFOS OBLIGATOIRES ##
         # Si un champ obligatoire est vide, alors un message d'erreur
         # est envoyé à l'utilisateur·rice
         if (
@@ -165,7 +165,7 @@ def update_person(person_id):
         else:
             Pantheonises.add_required_info(person_id, form_infos)
 
-                    ## LES IMAGES ##
+            ## LES IMAGES ##
         ## Pour le portrait :
         if request.files["portraitFile"]:
             # Récuperation du fichier
@@ -182,7 +182,7 @@ def update_person(person_id):
             # Enregistrement du fichier  dans l'application
             Images.upload_image(portrait_file)
 
-            # Création de la chaîne de charactère pour le chemin vers l'image
+        # Création de la chaîne de charactère pour le chemin vers l'image
         if person.image_id:
             if person.image_id.portrait_path:
                 form_infos["p_path"] = person.image_id.portrait_path
@@ -190,7 +190,6 @@ def update_person(person_id):
                 form_infos["p_path"] = "/static/images/" + portrait_file.filename
         else:
             form_infos["p_path"] = "/static/images/" + portrait_file.filename
-
 
         if request.files["tombFile"]:
             ## Mêmes étapes pour la tombe que précédemment à savoir :
@@ -200,15 +199,15 @@ def update_person(person_id):
             # 4. Enregistrement des données vers la base
 
             # 1.
-            tomb_file = request.files["tombFile"] 
+            tomb_file = request.files["tombFile"]
             name = unidecode.unidecode(person.name.replace(" ", "-").lower())
             firstname = unidecode.unidecode(person.firstname.replace(" ", "-").lower())
             tomb_file.filename = "{}_{}_tomb.jpg".format(name, firstname)
 
             # 2.
-            Images.upload_image(tomb_file) 
+            Images.upload_image(tomb_file)
 
-            # 3.
+        # 3.
         if person.image_id:
             if person.image_id.tomb_path:
                 form_infos["t_path"] = person.image_id.tomb_path
@@ -217,7 +216,7 @@ def update_person(person_id):
         else:
             form_infos["t_path"] = "/static/images/" + tomb_file.filename
 
-        # 4. 
+        # 4.
         Images.add_data_images(person_id, form_infos)
 
         # L'opération a été effectuée avec succès.
