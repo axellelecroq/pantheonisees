@@ -127,6 +127,9 @@ class Pantheonises(db.Model):
         :rtype: bool
         """
         p = Pantheonises.query.filter(Pantheonises.id == id).first()
+        if p.image_id : 
+            img = Images.query.filter(Images.id == p.image_id.id).first()
+            db.session.delete(img)
 
         db.session.delete(p)
         db.session.commit()
