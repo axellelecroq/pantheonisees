@@ -1,6 +1,7 @@
 from flask import render_template, request, flash, redirect, url_for
 import requests
 import unidecode
+import os
 
 from ..app import *
 from ..modeles.data import *
@@ -79,7 +80,7 @@ def create_person():
                 "Tous les champs obligatoires doivent être renseignés.",
                 category="error",
             )
-            return render_template("pages/create.html")
+            return render_template("pages/person_create.html")
 
         # Vérification qu'il y ait bien que des chiffres dans les dates
         # Si il y a une lettre, alors un message d'erreur est envoyé à l'utilisateur·rice
@@ -91,7 +92,7 @@ def create_person():
             flash(
                 "Une des dates obligatoires entrées n'est pas valide.", category="error"
             )
-            return render_template("pages/create.html")
+            return render_template("pages/person_create.html")
         # Si non, les informations sont enregistrées dans la base de données.
         else:
             Pantheonises.add_new_person(form_infos)
@@ -133,6 +134,16 @@ def update_person(person_id):
             "p_date": request.form.get("portraitDate"),
             "t_path": "",
         }
+
+        # Si le chemin d'une image est déjà enregistré
+        # dans la base de donnée alors on l'ajoute au dictionnaire
+        # afin qu'il ne soit pas perdu lors de l'enregistrement
+        # d'une autre image
+        if person.image_id:
+            if person.image_id.portrait_path:
+                form_infos["p_path"] = person.image_id.portrait_path
+            elif person.image_id.tomb_path:
+                form_infos["t_path"] = person.image_id.tomb_path
 
         ## LES INFOS OBLIGATOIRES ##
         # Si un champ obligatoire est vide, alors un message d'erreur
@@ -182,20 +193,16 @@ def update_person(person_id):
             # Enregistrement du fichier  dans l'application
             Images.upload_image(portrait_file)
 
-        # Création de la chaîne de charactère pour le chemin vers l'image
-        if person.image_id:
-            if person.image_id.portrait_path:
-                form_infos["p_path"] = person.image_id.portrait_path
-            else:
+            # Création de la chaîne de charactère pour le chemin vers l'image
+            # Si aucun n'est déjà enregistré
+            if not form_infos["p_path"]:
                 form_infos["p_path"] = "/static/images/" + portrait_file.filename
-        else:
-            form_infos["p_path"] = "/static/images/" + portrait_file.filename
 
         if request.files["tombFile"]:
             ## Mêmes étapes pour la tombe que précédemment à savoir :
             # 1. Renommage du nom du fichier afin qu'il soit enregistré dans la base
             # 2. Enregistrement du fichier dans l'application
-            # 3. Création du nom du chemin vers l'image
+            # 3. Création du nom du chemin vers l'image si aucun n'est déjà enregistré
             # 4. Enregistrement des données vers la base
 
             # 1.
@@ -207,14 +214,9 @@ def update_person(person_id):
             # 2.
             Images.upload_image(tomb_file)
 
-        # 3.
-        if person.image_id:
-            if person.image_id.tomb_path:
-                form_infos["t_path"] = person.image_id.tomb_path
-            else:
+            # 3.
+            if not form_infos["t_path"]:
                 form_infos["t_path"] = "/static/images/" + tomb_file.filename
-        else:
-            form_infos["t_path"] = "/static/images/" + tomb_file.filename
 
         # 4.
         Images.add_data_images(person_id, form_infos)
