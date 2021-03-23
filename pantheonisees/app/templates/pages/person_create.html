@@ -8,18 +8,11 @@
         <br />
         <h1 class="titre">{%block titre %}Ajouter un.e Panthéonisé.e{% endblock titre %}</h1>
         <hr class="style-one" />
-        <p class="homeText" style="
-        padding-left: 60px;
-        padding-bottom: 20px;
-        font-style: italic;">Les champs marqués d'un astérix (*) sont obligatoires.
+        <p class="infoFormText">Les champs marqués d'un astérix (*) sont obligatoires.
         </p>
-        {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
-        <div>
-            {% for category, message in messages %}
-            <p class="alert flaskMessage" role="alert">{{ message }}</p>
-            {% endfor %}
-        </div>
-        {% endif %} {% endwith %}
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+        <p class="alert flaskMessage" role="alert" style="padding-bottom: 10px;">{{ message }}</p>
+        {% endfor %} {% endif %} {% endwith %}
         <form class="form-inline" enctype="multipart/form-data" action="" method="POST">
             <table summary="Formulaire de modification">
                 <tbody class="personText ">
