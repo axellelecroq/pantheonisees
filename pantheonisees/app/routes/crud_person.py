@@ -85,8 +85,8 @@ def create_person():
         # Si il y a une lettre, alors un message d'erreur est envoyé à l'utilisateur·rice
         if (
             Pantheonises.is_date(form_infos["birth_date"]) == False
-            and Pantheonises.is_date(form_infos["death_date"]) == False
-            and Pantheonises.is_date(form_infos["pantheonisation"]) == False
+            or Pantheonises.is_date(form_infos["death_date"]) == False
+            or Pantheonises.is_date(form_infos["pantheonisation"]) == False
         ):
             flash(
                 "Une des dates obligatoires entrées n'est pas valide.", category="error"
