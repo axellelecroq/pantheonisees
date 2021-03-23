@@ -19,21 +19,21 @@
                         <td>
                             <label class="
                             searchLabel">Identifiant</label></td>
-                        <td><input class="searchInput" type="text " name="login" /></td>
+                        <td><input class="searchInput" type="text " name="login" value="{% if infos%}{{infos['ident']}}{%endif%}" /></td>
                     </tr>
                     <tr>
                         <td>
                             <label class="
                         searchLabel">Mot de passe</label>
                         </td>
-                        <td><input type="password" name="password" class="searchInput" /></td>
+                        <td><input type="password" name="password" class="searchInput" value="{% if infos%}{{infos['pw']}}{%endif%}" /></td>
                     </tr>
                     <tr>
                         <td>
                             <label class="
                         searchLabel">Email</label>
                         </td>
-                        <td><input type="text" name="email" class="searchInput" /></td>
+                        <td><input type="text" name="email" class="searchInput" value="{% if infos%}{{infos['email']}}{%endif%}" /></td>
                     </tr>
                     <tr>
                         <td></td>

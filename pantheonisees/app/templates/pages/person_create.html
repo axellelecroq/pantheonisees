@@ -18,35 +18,35 @@
                 <tbody class="personText ">
                     <tr>
                         <td class="personLabel ">Nom*</td>
-                        <td><input class="searchInput" name="name" type="text"></td>
+                        <td><input class="searchInput" name="name" type="text" value="{% if infos%}{{infos['name']}}{%endif%}"></td>
                     </tr>
                     <tr>
                         <td class="personLabel ">Prénoms*</td>
-                        <td><input class="searchInput" name="firstname" type="text"></td>
+                        <td><input class="searchInput" name="firstname" type="text" value="{% if infos%}{{infos['firstname']}}{%endif%}"></td>
                     </tr>
                     <tr>
                         <td class="personLabel ">Année de naissance*</td>
-                        <td><input class="searchInput" name="birthDate" type="text"></td>
+                        <td><input class="searchInput" name="birthDate" type="text" value="{% if infos%}{{infos['birth_date']}}{%endif%}"></td>
                     </tr>
                     <tr>
                         <td class="personLabel ">Date de décès*</td>
-                        <td><input class="searchInput" name="deathDate" type="text"></td>
+                        <td><input class="searchInput" name="deathDate" type="text" value="{% if infos%}{{infos['death_date']}}{%endif%}"></td>
                     </tr>
                     <tr>
                         <td class="personLabel ">Date de panthéonisation*</td>
-                        <td><input class="searchInput" name="pantheonisationDate" type="text"></td>
+                        <td><input class="searchInput" name="pantheonisationDate" type="text" value="{% if infos%}{{infos['pantheonisation']}}{%endif%}"></td>
                     </tr>
                     <tr>
                         <td class="personLabel ">Status*</td>
-                        <td><input class="searchInput" name="status" type="text"></td>
+                        <td><input class="searchInput" name="status" type="text" value="{% if infos%}{{infos['status']}}{%endif%}"></td>
                     </tr>
                     <tr>
                         <td class="personLabel ">Genre</td>
-                        <td><input class="searchInput" name="sex" type="text"></td>
+                        <td><input class="searchInput" name="sex" type="text" value="{% if infos%}{{infos['sex']}}{%endif%}"></td>
                     </tr>
                     <tr>
                         <td class="personLabel ">Lien wikipédia*</td>
-                        <td><input class="searchInput" name="wikiLink" type="text"></td>
+                        <td><input class="searchInput" name="wikiLink" type="text" value="{% if infos%}{{infos['wikipedia']}}{%endif%}"></td>
                     </tr>
                     <tr>
                         <td></td>

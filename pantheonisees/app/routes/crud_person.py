@@ -79,7 +79,7 @@ def create_person():
                 "Tous les champs obligatoires doivent être renseignés.",
                 category="error",
             )
-            return render_template("pages/person_create.html")
+            return render_template("pages/person_create.html", infos=form_infos)
 
         # Vérification qu'il y ait bien que des chiffres dans les dates
         # Si il y a une lettre, alors un message d'erreur est envoyé à l'utilisateur·rice
@@ -91,7 +91,7 @@ def create_person():
             flash(
                 "Une des dates obligatoires entrées n'est pas valide.", category="error"
             )
-            return render_template("pages/person_create.html")
+            return render_template("pages/person_create.html", infos=form_infos)
         # Si non, les informations sont enregistrées dans la base de données.
         else:
             Pantheonises.add_new_person(form_infos)
@@ -263,4 +263,4 @@ def delete_person(person_id):
     flash(name + " a bien été supprimé·e de la base.", category="success")
 
     # Retour à la page toutes.html
-    return redirect(url_for('toutes'))
+    return redirect(url_for("toutes"))

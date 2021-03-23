@@ -64,45 +64,51 @@ def inscription():
 
     if request.method.lower() == "post":
         # Inscription de l'utilisateur-rice
-        ident = request.form.get("login")
-        pw = request.form.get("password")
-        email = request.form.get("email")
+        user = {
+            "ident": request.form.get("login"),
+            "pw": request.form.get("password"),
+            "email": request.form.get("email"),
+        }
         errors = []
 
         # Vérification si le nom d'utilisateur.rice est disponible
-        is_unique = User.is_unique(identifiant=ident, mail=email)
+        is_unique = User.is_unique(identifiant=user["ident"], mail=user["email"])
         if is_unique is False:
-            return render_template("pages/login.html")
+            return render_template("pages/login.html", infos=user)
 
         # Vérifications validité de l'identifiant
-        elif not ident:
+        elif not user["ident"]:
             errors.append("Aucun identifiant renseigné")
-        elif len(ident) < 8:
+        elif len(user["ident"]) < 8:
             errors.append(
                 "Votre identifiant est trop court. Veuillez entrer un identifiant avec au moins 8 caractères."
             )
 
         # Vérifications validité du mot de passe
-        elif not pw:
+        elif not user["pw"]:
             errors.append("Mot de passe non renseigné")
-        elif len(pw) < 8:
+        elif len(user["pw"]) < 8:
             errors.append(
                 "Votre mot de passe trop court. Veuillez entrer un mot de passe avec au moins 8 caractères."
             )
 
         # Verifications validité email
-        if User.is_valid_email(email) == False:
+        if not user["email"]:
+            errors.append("Veuillez entrer un email. ")
+        elif User.is_valid_email(user["email"]) == False:
             errors.append("L'email proposé n'est pas valide. ")
 
         # Inscription si aucune erreur n'a été rencontrée
         if not errors:
-            User.inscription(ident, pw, email)
+            User.inscription(user["ident"], user["pw"], user["email"])
             flash("Vous êtes inscrit·e", category="success")
             return redirect(url_for("accueil"))
         # Sinon envoi de toutes les erreurs sous forme de flashed messages
         else:
             for error in errors:
                 flash(error, category="error")
+
+        return render_template("pages/login.html", infos=user)
 
     return render_template("pages/login.html")
 
