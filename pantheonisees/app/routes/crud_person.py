@@ -5,7 +5,6 @@ import os
 
 from ..app import *
 from ..modeles.data import *
-from .general import toutes
 
 
 """
@@ -263,5 +262,5 @@ def delete_person(person_id):
     # Envoi du message d'information à l'utilisateur·rice
     flash(name + " a bien été supprimé·e de la base.", category="success")
 
-    # Retour à la page toutes.html par le renvoi de la fonction toutes() de general
-    return toutes()
+    # Retour à la page toutes.html
+    return redirect(url_for('toutes'))
