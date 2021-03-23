@@ -35,14 +35,8 @@ app = Flask("pantheonisees", template_folder=templates, static_folder=statics)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
 # Configuration de la base de données :
-
-# Lien avec la base de données sqlite
-
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./db_pantheonises.db"
 app.config["SECRET_KEY"] = "JeSuisUnSecret"
-
-
-# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 login = LoginManager(app)
 
