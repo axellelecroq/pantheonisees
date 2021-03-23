@@ -13,9 +13,7 @@ En cas de problème avec l'utilisation de la base ou pour toute demande d’info
 pantheonisees
     ├── app
     │   ├── modeles
-    │   │       ├── images.py
-    │   │       ├── pantheonisees.py
-    │   │       └── user.py
+    │   │       └── data.py
     │   ├── routes
     │   │       ├── connexion.py
     │   │       ├── crud_person.py
@@ -35,7 +33,6 @@ pantheonisees
     │   │       │      ├── home.html
     │   │       │      ├── login.html
     │   │       │      ├── person_create.html
-    │   │       │      ├── person_delete.html
     │   │       │      ├── person_update.html
     │   │       │      ├── person.html
     │   │       │      ├── search.html
