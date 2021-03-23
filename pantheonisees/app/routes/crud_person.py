@@ -244,10 +244,24 @@ def delete_person(person_id):
     :return: template toutes.html
     :rtype: template
     """
+
+    # Récupération du nom et prénoms afin d'informer l'utilisateur·trice
+    # de la personnée supprimée dans un flashed message.
     p = Pantheonises.query.filter(Pantheonises.id == person_id).first()
     name = p.name + " " + p.firstname
 
+    # Suppression des images si image(s) enregistrée(s)
+    if p.image_id:
+        if p.image_id.portrait_path:
+            os.remove("app" + p.image_id.portrait_path)
+        if p.image_id.tomb_path:
+            os.remove("app" + p.image_id.tomb_path)
+
+    # Suppression de la personne dans la base de données
     Pantheonises.delete_person(person_id)
 
+    # Envoi du message d'information à l'utilisateur·rice
     flash(name + " a bien été supprimé·e de la base.", category="success")
+
+    # Retour à la page toutes.html par le renvoi de la fonction toutes() de general
     return toutes()
