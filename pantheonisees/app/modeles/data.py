@@ -118,6 +118,19 @@ class Pantheonises(db.Model):
             print(E)
             return False
 
+    @staticmethod
+    def delete_person(id: int):
+        """
+        Méthode permettant de supprimer une personne panthéonisée
+        de la base de données
+        :param mail : str
+        :rtype: bool
+        """
+        p = Pantheonises.query.filter(Pantheonises.id == id).first()
+
+        db.session.delete(p)
+        db.session.commit()
+
 
 class Images(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

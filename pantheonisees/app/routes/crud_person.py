@@ -4,6 +4,7 @@ import unidecode
 
 from ..app import *
 from ..modeles.data import *
+from .general import toutes
 
 
 """
@@ -96,7 +97,7 @@ def create_person():
             Pantheonises.add_new_person(form_infos)
 
         flash(
-            "Cette personne a bien été ajoutée à la base de donnée.",
+            "Une nouvelle personne a été ajoutée à la base de donnée.",
             category="success",
         )
         return redirect(url_for("toutes"))
@@ -242,6 +243,10 @@ def delete_person(person_id):
     :return: template toutes.html
     :rtype: template
     """
-    person = Pantheonises.query.filter(Pantheonises.id == person_id).first()
+    p = Pantheonises.query.filter(Pantheonises.id == person_id).first()
+    name = p.name + " " + p.firstname
 
-    return render_template("pages/person_delete.html", result=person)
+    Pantheonises.delete_person(person_id)
+
+    flash(name + " a bien été supprimé·e de la base.", category="success")
+    return toutes()
