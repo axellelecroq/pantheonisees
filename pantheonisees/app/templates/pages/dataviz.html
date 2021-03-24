@@ -1,5 +1,9 @@
 {% extends 'conteneur.html' %} {% block content %}
 
+<head>
+    <!-- Load plotly.js into the DOM -->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
 <br>
 <div class="container" id="accueil">
     <br/>
@@ -9,6 +13,9 @@
     <div class="homeText" style="padding-top: 20px;">
         <p>Les chiffres et graphiques permettent parfois d'avoir une vue d'ensemble sur les données, en l'occurrence ici, les personnes panthéonisées. Ces visualisations de données permettent de mettre en exergue le fait que la parité homme-femme n'est pas
             encore de mise au sein du Panthéon. </p>
+    </div>
+    <div id='dataviz_status'>
+        <!-- Plotly chart will be drawn inside this DIV -->
     </div>
 
     <div class="dataviz">
@@ -87,4 +94,10 @@
             vizElement.parentNode.insertBefore(scriptElement, vizElement);
         </script>
     </div>
+
+
+    {% block script %}
+    <script type="text/javascript " src='/static/js/graph_per_status.js'>
+    </script>
+    {% endblock script %}
     <br> {% endblock content %}
