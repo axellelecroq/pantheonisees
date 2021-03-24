@@ -1,16 +1,16 @@
-var input = document.querySelector('#inputGender')
+var inputGender = document.querySelector('#inputGender')
 var selectedGender = document.querySelector('#gender')
 
 selectedGender.addEventListener('change', () => {
     switch (selectedGender.value) {
         case 'femme':
-            input.setAttribute('value', 'femme');
+            inputGender.setAttribute('value', 'femme');
             break;
         case 'homme':
-            input.setAttribute('value', 'homme');
+            inputGender.setAttribute('value', 'homme');
             break;
         case 'autre':
-            input.setAttribute('value', 'autre');
+            inputGender.setAttribute('value', 'autre');
             break;
     }
 })

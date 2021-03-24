@@ -1,52 +1,31 @@
 {% extends 'conteneur.html' %} {% block content %}
 
+<head>
+    <!-- Load plotly.js into the DOM -->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
 <br>
 <div class="container" id="accueil">
     <br/>
 
     <h1>Quelques chiffres autour des panthéonisé·e·s</h1>
     <hr/>
-    <div class="homeText" style="padding-top: 20px;">
+    <div class="datavizText">
         <p>Les chiffres et graphiques permettent parfois d'avoir une vue d'ensemble sur les données, en l'occurrence ici, les personnes panthéonisées. Ces visualisations de données permettent de mettre en exergue le fait que la parité homme-femme n'est pas
             encore de mise au sein du Panthéon. </p>
     </div>
-
-    <div class="dataviz">
-        <div class='float-left tableauPlaceholder' id='viz1614942704219' style='position: relative; width:80%; height:80%'>
-            <noscript><a href='#'>
-        <img class="homeImages" alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pa&#47;Panthonis_e_s&#47;HFpstatus&#47;1_rss.png' style='border: none' /></a>
-    </noscript>
-            <object class='tableauViz' style='display:none;'>
-        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-        <param name='embed_code_version' value='1' />
-        <param name='name' value='Panthonis_e_s&#47;HFpstatus' />
-        <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pa&#47;Panthonis_e_s&#47;HFpstatus&#47;1.png' />
-        <!-- <param name='animate_transition' value='yes' /> -->
-        <param name='display_static_image' value='yes' />
-        <param name='display_spinner' value='yes' />
-        <param name='display_overlay' value='yes' />
-        <param name='display_count' value='yes' />
-        <param name='language' value='fr' /></object></div>
-        <script type='text/javascript'>
-            var divElement = document.getElementById('viz1614942704219');
-            var vizElement = divElement.getElementsByTagName('object')[0];
-            vizElement.style.width = '80%';
-            vizElement.style.height = (divElement.offsetWidth * 0.62) + 'px';
-            var scriptElement = document.createElement('script');
-            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-            vizElement.parentNode.insertBefore(scriptElement, vizElement);
-        </script>
+    <div id='dataviz_status'>
+        <!-- Plotly chart will be drawn inside this DIV -->
     </div>
-    <div class="homeText" style="padding-left: 708px">
+
+    <div class="datavizText">
         <p>Certaines personnes reposent au Panthéon en tant que parent ou épouse d'une personne panthéonisée. C'est le cas de Sophie Berthelot, bien que chimiste, qui y est inhumée, non pas pour la reconnaissance de la qualité de ses actes, mais auprès de
             son mari comme cela était le souhait du couple. De même que Marc Schoelcher, père de Victor Schoelcher est inhumé auprès de son fils en tant que parent de celui-ci. Simone Veil a, par ailleurs, été inhumée au Panthéon en 2015, son mari Antoine,
             haut-fonctionnaire, repose à ses côtés. </p>
         <p>Seulement cinq femmes sont panthéonisées. Ce graphique permet d'exposer tous les status apparaissant dans la base de données avec pour chacun le nombre d'hommes et de femmes. </p>
     </div>
     <hr/>
-
-
-    <div class="homeText" style="padding-top: 20px; ">
+    <div class="datavizText">
         <p>Napoléon, empereur des Français de 1804 à 1814, a panhtéonisé plus de la moitié des personnes inhumées au sein du Panthéon. Cela explique par ailleurs l'importance du nombre de personnes ayant comme status le militariat (voir premier graphique).
             Ce graphique expose bien la concentration des panthéonisations au début du XIXe siècle. Napoléon s'est emparé de ce pouvoir afin de remercier ses troupes.
         </p>
@@ -54,37 +33,12 @@
             au cours de son second mandat : René Cassin, Nicolas de Condorcet, abbé Grégoire, Gaspard de Monge, Jean Monnet, Pierre et Marie Curie.</p>
     </div>
 
-    <div class="dataviz ">
-        <div class='tableauPlaceholder' id='viz1615211792210' style='position: relative'>
-            <noscript>
-            <a href='#'>
-                <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pa&#47;Panthonis_e_s&#47;hfpanthonisation&#47;1_rss.png' style='border: none' />
-            </a>
-        </noscript>
-            <object class='tableauViz' style='display:none;'>
-            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-            <param name='embed_code_version' value='3' /> 
-            <param name='site_root' value='' />
-            <param name='name' value='Panthonis_e_s&#47;hfpanthonisation' />
-            <param name='tabs' value='no' />
-            <param name='toolbar' value='yes' />
-            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pa&#47;Panthonis_e_s&#47;hfpanthonisation&#47;1.png' />
-            <param name='animate_transition' value='yes' />
-            <param name='display_static_image' value='yes' />
-            <param name='display_spinner' value='yes' />
-            <param name='display_overlay' value='yes' />
-            <param name='display_count' value='yes' />
-            <param name='language' value='fr' />
-        </object>
-        </div>
-        <script type='text/javascript'>
-            var divElement = document.getElementById('viz1615211792210');
-            var vizElement = divElement.getElementsByTagName('object')[0];
-            vizElement.style.width = '100%';
-            vizElement.style.height = (divElement.offsetWidth * 0.62) + 'px';
-            var scriptElement = document.createElement('script');
-            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-            vizElement.parentNode.insertBefore(scriptElement, vizElement);
-        </script>
-    </div>
+    <div id="dataviz_pantheonisation"></div>
+
+    {% block script %}
+    <script type="text/javascript " src='/static/js/graph_per_status.js'>
+    </script>
+    <script type="text/javascript " src='/static/js/graph_pantheonisation_date.js'>
+    </script>
+    {% endblock script %}
     <br> {% endblock content %}
