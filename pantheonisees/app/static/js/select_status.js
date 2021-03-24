@@ -1,28 +1,28 @@
-var input = document.querySelector('#inputStatus')
+var inputStatus = document.querySelector('#inputStatus')
 var selectedStatus = document.querySelector('#status')
 
 selectedStatus.addEventListener('change', () => {
     switch (selectedStatus.value) {
         case 'lettres':
-            input.setAttribute('value', 'lettre');
+            inputStatus.setAttribute('value', 'lettre');
             break;
         case 'sciences':
-            input.setAttribute('value', 'scientifique');
+            inputStatus.setAttribute('value', 'scientifique');
             break;
         case 'religion':
-            input.setAttribute('value', 'religieux');
+            inputStatus.setAttribute('value', 'religieux');
             break;
         case 'politique':
-            input.setAttribute('value', 'politique');
+            inputStatus.setAttribute('value', 'politique');
             break;
         case 'loi':
-            input.setAttribute('value', 'loi');
+            inputStatus.setAttribute('value', 'loi');
             break;
         case 'résistant':
-            input.setAttribute('value', 'résistant');
+            inputStatus.setAttribute('value', 'résistant');
             break;
         case 'militaire':
-            input.setAttribute('value', 'militaire');
+            inputStatus.setAttribute('value', 'militaire');
             break;
     }
 })
