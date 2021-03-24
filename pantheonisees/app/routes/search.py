@@ -51,6 +51,7 @@ def recherche():
                         Pantheonises.firstname.like(f"%{search_list[1]}%"),
                         Pantheonises.pantheonisation.like(f"%{search_list[2]}%"),
                         Pantheonises.status.like(f"%{search_list[3]}%"),
+                        Pantheonises.sex.like(f"%{search_list[4]}%"),
                     )
                 )
                 .order_by(Pantheonises.name, Pantheonises.firstname)

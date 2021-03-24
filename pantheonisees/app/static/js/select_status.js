@@ -1,5 +1,6 @@
 var input = document.querySelector('#inputStatus')
 var selectedStatus = document.querySelector('#status')
+
 selectedStatus.addEventListener('change', () => {
     switch (selectedStatus.value) {
         case 'lettres':
