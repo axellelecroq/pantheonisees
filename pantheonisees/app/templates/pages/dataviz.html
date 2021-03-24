@@ -10,7 +10,7 @@
 
     <h1>Quelques chiffres autour des panthéonisé·e·s</h1>
     <hr/>
-    <div class="homeText" style="padding-top: 20px;">
+    <div class="datavizText">
         <p>Les chiffres et graphiques permettent parfois d'avoir une vue d'ensemble sur les données, en l'occurrence ici, les personnes panthéonisées. Ces visualisations de données permettent de mettre en exergue le fait que la parité homme-femme n'est pas
             encore de mise au sein du Panthéon. </p>
     </div>
@@ -18,14 +18,14 @@
         <!-- Plotly chart will be drawn inside this DIV -->
     </div>
 
-    <div class="homeText" style="padding-left: 708px">
+    <div class="datavizText">
         <p>Certaines personnes reposent au Panthéon en tant que parent ou épouse d'une personne panthéonisée. C'est le cas de Sophie Berthelot, bien que chimiste, qui y est inhumée, non pas pour la reconnaissance de la qualité de ses actes, mais auprès de
             son mari comme cela était le souhait du couple. De même que Marc Schoelcher, père de Victor Schoelcher est inhumé auprès de son fils en tant que parent de celui-ci. Simone Veil a, par ailleurs, été inhumée au Panthéon en 2015, son mari Antoine,
             haut-fonctionnaire, repose à ses côtés. </p>
         <p>Seulement cinq femmes sont panthéonisées. Ce graphique permet d'exposer tous les status apparaissant dans la base de données avec pour chacun le nombre d'hommes et de femmes. </p>
     </div>
     <hr/>
-    <div class="homeText" style="padding-top: 20px; ">
+    <div class="datavizText">
         <p>Napoléon, empereur des Français de 1804 à 1814, a panhtéonisé plus de la moitié des personnes inhumées au sein du Panthéon. Cela explique par ailleurs l'importance du nombre de personnes ayant comme status le militariat (voir premier graphique).
             Ce graphique expose bien la concentration des panthéonisations au début du XIXe siècle. Napoléon s'est emparé de ce pouvoir afin de remercier ses troupes.
         </p>
@@ -33,8 +33,12 @@
             au cours de son second mandat : René Cassin, Nicolas de Condorcet, abbé Grégoire, Gaspard de Monge, Jean Monnet, Pierre et Marie Curie.</p>
     </div>
 
+    <div id="dataviz_pantheonisation"></div>
+
     {% block script %}
     <script type="text/javascript " src='/static/js/graph_per_status.js'>
+    </script>
+    <script type="text/javascript " src='/static/js/graph_pantheonisation_date.js'>
     </script>
     {% endblock script %}
     <br> {% endblock content %}

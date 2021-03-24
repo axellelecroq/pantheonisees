@@ -1,4 +1,3 @@
-var architecte = 'Jacques-Germain Soufflot'
 var trace2 = {
     x: ['Architecte du panthéon', 'Artiste', 'Explorateur', "Personnes de lettres", "Personnes de loi", "Militaire", "Parent.e", "Politique ", "Religieux.se", "Résistant.e", "Révolution", "Scientifique"],
     y: [1, 1, 1, 6, 3, 18, 1, 27, 4, 2, 1, 10],

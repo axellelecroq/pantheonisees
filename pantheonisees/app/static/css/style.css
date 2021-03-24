@@ -163,3 +163,10 @@
     padding-left: 60px;
     font-style: italic;
 }
+
+.datavizText {
+    word-spacing: 5px;
+    text-align: justify;
+    font-size: 14px;
+    margin: 0px 50px 10px 50px;
+}
