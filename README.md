@@ -24,10 +24,10 @@ pantheonisees
     │   │       ├── css/...
     │   │       ├── images/...
     │   │       └── js
-    │   │       │    ├── graph_pantheonisation_date.js
-    │   │       │    ├── graph_per_status.js
-    │   │       │    ├── select_gender.js
-    │   │       │    └── select_status.js
+    │   │           ├── graph_pantheonisation_date.js
+    │   │           ├── graph_per_status.js
+    │   │           ├── select_gender.js
+    │   │           └── select_status.js
     │   ├── templates
     │   │       ├── errors/...
     │   │       ├── layout/default.html
