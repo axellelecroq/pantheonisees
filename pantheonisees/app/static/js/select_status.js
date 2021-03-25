@@ -18,7 +18,7 @@ selectedStatus.addEventListener('change', () => {
         case 'loi':
             inputStatus.setAttribute('value', 'loi');
             break;
-        case 'résistant':
+        case 'résistance':
             inputStatus.setAttribute('value', 'résistant');
             break;
         case 'militaire':
