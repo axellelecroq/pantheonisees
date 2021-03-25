@@ -23,7 +23,6 @@ MarkupSafe==1.1.1
 msgpack==0.6.2
 mypy-extensions==0.4.3
 packaging==20.3
-pandas
 pathspec==0.8.1
 pep517==0.8.2
 plotly==4.14.3
