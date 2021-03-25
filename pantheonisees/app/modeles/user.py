@@ -1,5 +1,5 @@
 from ..app import *
-from . import images, pantheonisees
+from . import data
 
 from flask import flash
 from flask_login import UserMixin

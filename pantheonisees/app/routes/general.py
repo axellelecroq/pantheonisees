@@ -1,7 +1,7 @@
 from flask import render_template
 from ..app import *
 
-from ..modeles.pantheonisees import *
+from ..modeles.data import Pantheonises
 
 
 """

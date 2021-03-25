@@ -2,9 +2,8 @@ from flask import render_template, request, flash, redirect, url_for
 from ..app import *
 
 from app.modeles import *
-from ..modeles.pantheonisees import *
+from ..modeles.data import *
 from ..modeles.user import *
-from ..modeles.images import *
 import requests
 
 
