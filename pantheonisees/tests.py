@@ -1,6 +1,7 @@
-from .app.app import db, login
-from .app.modeles.user import *
-from .app.modeles.data import *
+from app.app import db, login
+from app.modeles.user import *
+from app.modeles.data import *
+
 
 from unittest import TestCase
 
@@ -8,6 +9,7 @@ from unittest import TestCase
 class Base(TestCase):
     pantheonises = [
         Pantheonises(
+            id = 101,
             name = "Riqueti de Mirabeau",
             firstname = "Honoré-Gabriel",
             status = "diplomate, journaliste et homme politique français",
@@ -18,6 +20,7 @@ class Base(TestCase):
             wiki_link = "https://fr.wikipedia.org/wiki/Honor%C3%A9-Gabriel_Riqueti_de_Mirabeau",
         ), 
         Pantheonises(
+            id =102,
             name = "Marat",
             firstname = "Jean-Paul",
             status = "dmédecin, physicien, journaliste et homme politique français, révolutionnaire",
@@ -50,18 +53,26 @@ class TestUser(Base):
     """ Unit tests for Users """
     def test_registration(self):
         with self.app.app_context():
-            user = User.inscription()
-            statut, utilisateur = User.creer("joh", "johanna.johanna@enc-sorbonne.fr", "Johanna", "azerty")
-            query = User.query.filter(User.user_email == "johanna.johanna@enc-sorbonne.fr").first()
-        self.assertEqual(query.user_nom, "Johanna")
-        self.assertEqual(query.user_login, "joh")
-        self.assertNotEqual(query.user_password, "azerty")
+            statut, user = User.inscription(
+                username="helloworld",
+                password="helloworld1",
+                email="hello.world@chartes.psl.eu",
+            )
+                      
+            query = User.query.filter(User.user_email == "hello.world@chartes.psl.eu").first()
+        self.assertEqual(query.username, "helloworld")
+        self.assertNotEqual(query.user_password, "helloworld1")
         self.assertTrue(statut)
 
     def test_login_et_creation(self):
         with self.app.app_context():
-            statut, cree = User.creer("joh", "johanna.johanna@enc-sorbonne.fr", "Johanna", "azerty")
-            connecte = User.identification("joh", "azerty")
+            statut, user = User.inscription(
+                username="helloworld",
+                password="helloworld1",
+                email="hello.world@chartes.psl.eu",
+            )
 
-        self.assertEqual(cree, connecte)
+            connected = User.connexion("helloworld", "helloworld1")
+
+        self.assertEqual(user, connected)
         self.assertTrue(statut)
