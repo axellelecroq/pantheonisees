@@ -1,6 +1,9 @@
-from app.app import db, login
-from app.modeles.user import *
-from app.modeles.data import *
+# from app.app import db, login
+# from app.modeles.user import User
+# from app.modeles.data import Pantheonises
+from .app.app import *
+from .app.modeles.user import User
+from .app.modeles.data import Pantheonises
 
 
 from unittest import TestCase
@@ -32,9 +35,8 @@ class Base(TestCase):
         )]
 
     def setUp(self):
-        self.app = config_app("test")
+        self.app = app.test_client()
         self.db = db
-        self.client = self.app.test_client()
         self.db.create_all(app=self.app)
 
     def tearDown(self):
