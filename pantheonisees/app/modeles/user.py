@@ -6,8 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from validate_email import validate_email
 
 
-
-
 class User(UserMixin, db.Model):
     id = db.Column(
         db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True

@@ -210,9 +210,6 @@ class Images(db.Model):
                 return False
 
 
-
-
-
 # Enfin on indique à l'ORM via la méthode .commit()
 # de faire les requêtes nécéssaires pour finaliser les
 # opérations d'ajouts dans la table.
