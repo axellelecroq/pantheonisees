@@ -3,9 +3,8 @@ from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user
 
 # Import de mes propres modules
-from app.app import app, login
-from app.modeles import *
-from ..modeles.data import *
+from ..app import app, login
+from ..modeles.user import *
 
 
 @app.route("/connexion", methods=["GET", "POST"])
