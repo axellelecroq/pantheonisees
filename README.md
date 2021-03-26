@@ -53,14 +53,14 @@ pantheonisees
 ```
 
 ### Les fonctionnalités
-Accessible à tous :
+Accessibles à tou·te·s :
 - découvrir les personnes inhumées au Panthéon
 - découvrir les visualisations de données
 
 Disponibles seulement pour les personnes ayant crée un compte :
-- ajouter un.e Panthéonisé.e
-- modifier les informations actuelles enregistrées d'un.e Panthéonisé.e
-- ajouter des photographies à un.e Panthéonisé.e
+- ajouter un·e Panthéonisé·e
+- modifier les informations actuelles enregistrées d'un·e Panthéonisé·e
+- ajouter des photographies à un·e Panthéonisé·e
 
 ## Installer et lancer l'application
 ### Premier lancement
