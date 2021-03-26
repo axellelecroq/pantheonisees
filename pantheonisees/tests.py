@@ -1,15 +1,18 @@
-# from app.app import db, login
-# from app.modeles.user import User
-# from app.modeles.data import Pantheonises
 from .app.app import *
 from .app.modeles.user import User
 from .app.modeles.data import Pantheonises
 
-
 from unittest import TestCase
 
 
+# pour lancer les tests : python -m unittest discover 
+
+
 class Base(TestCase):
+    # Configuration de la base de données :
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./db_test.db"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
+
     pantheonises = [
         Pantheonises(
             id = 101,
@@ -35,18 +38,19 @@ class Base(TestCase):
         )]
 
     def setUp(self):
-        self.app = app.test_client()
+        self.app = app
+        self.client = app.test_client()
         self.db = db
         self.db.create_all(app=self.app)
 
     def tearDown(self):
         self.db.drop_all(app=self.app)
 
-    def insert_all(self, person=True):
+    def insert_all(self, pantheonises):
         # On donne à notre DB le contexte d'exécution
         with self.app.app_context():
-            if person:
-                for fixture in self.person:
+            if pantheonises:
+                for fixture in self.pantheonises:
                     self.db.session.add(fixture)
             self.db.session.commit()
 
@@ -55,26 +59,26 @@ class TestUser(Base):
     """ Unit tests for Users """
     def test_registration(self):
         with self.app.app_context():
-            statut, user = User.inscription(
-                username="helloworld",
-                password="helloworld1",
-                email="hello.world@chartes.psl.eu",
+            statut = User.inscription(
+                identifiant="helloworld",
+                motdepasse="helloworld1",
+                mail="hello.world@chartes.psl.eu",
             )
                       
-            query = User.query.filter(User.user_email == "hello.world@chartes.psl.eu").first()
-        self.assertEqual(query.username, "helloworld")
-        self.assertNotEqual(query.user_password, "helloworld1")
+            user = User.query.filter(User.email == "hello.world@chartes.psl.eu").first()
+        self.assertEqual(user.username, "helloworld")
+        self.assertNotEqual(user.password, "helloworld1")
         self.assertTrue(statut)
 
-    def test_login_et_creation(self):
+    def test_registration_login(self):
         with self.app.app_context():
-            statut, user = User.inscription(
-                username="helloworld",
-                password="helloworld1",
-                email="hello.world@chartes.psl.eu",
+            statut = User.inscription(
+                identifiant="helloworld",
+                motdepasse="helloworld1",
+                mail="hello.world@chartes.psl.eu",
             )
 
-            connected = User.connexion("helloworld", "helloworld1")
-
-        self.assertEqual(user, connected)
+            user_connected = User.connexion("helloworld", "helloworld1")
+            
+        self.assertTrue(user_connected)
         self.assertTrue(statut)
