@@ -4,8 +4,19 @@ from .app.modeles.data import Pantheonises
 
 from unittest import TestCase
 
+# Lors de la rédaction des tests, j'ai suivi le "3A pattern" :
+# "arrange, act, assert". Suivre ce principe est considéré être
+# une bonne pratique dans la rédaction des tests et permet
+# d'uniformiser leur structure. Dans l'article mentionné
+# ci-dessous, il est écrit que cette structure uniforme
+# est l'un de ses plus grands avantages : une fois habitué·e à
+# ce modèle, on peut lire et comprendre les tests plus facilement.
+# Ce qui, à son tour, réduit le coût de maintenance de l'ensemble
+# de notre suite de test.
+# L'article en question :
+# https://freecontent.manning.com/making-better-unit-tests-part-1-the-aaa-pattern/
 
-# pour lancer les tests : python -m unittest discover 
+# pour lancer les tests : python -m unittest discover
 
 
 class Base(TestCase):
@@ -59,6 +70,13 @@ class TestUser(Base):
     """ Unit tests for Users """
     def test_registration(self):
         with self.app.app_context():
+            # Afin d'illustrer ce qui a été mentionné plus haut,
+            # ce test est accompagné de commentaires permettant
+            # d'identifier chacune des parties du "3A pattern".
+            # Dans les tests suivants, les parties seront séparées
+            # par un saut de ligne.
+
+            # Arrange
             statut = User.inscription(
                 identifiant="helloworld",
                 motdepasse="helloworld1",
@@ -68,6 +86,8 @@ class TestUser(Base):
             user = User.query.filter(User.email == "hello.world@chartes.psl.eu").first()
         self.assertEqual(user.username, "helloworld")
         self.assertNotEqual(user.password, "helloworld1")
+            # Act
+        # Assert
         self.assertTrue(statut)
 
     def test_registration_login(self):
