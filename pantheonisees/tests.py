@@ -104,13 +104,18 @@ class TestPantheonises(Base):
 
     def test_pantheonises_is_added(self):
         with self.app.app_context():
-            for fixture in self.pantheonises:
-                self.db.session.add(fixture)
-            self.db.session.commit()
+            self.insert_pantheonises(self.pantheonises)
 
-            person = Pantheonises.query.filter(
-                Pantheonises.id == 102
-            ).first()
+            person = Pantheonises.query.filter(Pantheonises.id == 1).first()
 
         self.assertEqual(person.name, "Marat")
         self.assertEqual(person.birth, 1743)
+
+    def test_get_pantheonises(self):
+        with self.app.app_context():
+            self.insert_pantheonises(self.pantheonises)
+
+        r = self.client.get("/person/1")
+
+        self.assertEqual(r.status_code, 200)
+
