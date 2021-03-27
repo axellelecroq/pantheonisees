@@ -49,7 +49,9 @@ pantheonisees
     │   │       └── conteneur.html
     │   └── app.py
     ├── db_pantheonises.db
-    └── run.py
+    ├── db_test.db
+    ├── run.py
+    └── tests.py
 ```
 
 ### Les fonctionnalités
@@ -70,11 +72,16 @@ Pré-requis : python3
 
 1. Cloner ce dépôt git : `git clone https://github.com/axellelecroq/pantheonisees.git` et rentrer dedans
 2. Installer un environnement virtuel : `virtualenv -p python3 env` 
-3. Activer l'environnement virtuel via `source env/bin/activate`
+3. Activer l'environnement virtuel via `source ~/env/bin/activate`
 4. Installer requirements.txt : `pip install -r requirements.txt`
 5. Lancer l'application : `python3 pantheonisees/run.py`
 
 ### Lancement 
 1. Aller dans le dossier de l'application
-2. Activez le virtualenv : `source env/bin/activate`
+2. Activez le virtualenv : `source ~/env/bin/activate`
 3. Lancer l'application : `python3 pantheonisees/run.py`
+
+### Les tests 
+Pour lancer les tests de l'application:
+1. Se situer au niveau des fichiers `README.md` et `requirements.txt`
+2. Lancer cette commande : `python -m unittest discover`
