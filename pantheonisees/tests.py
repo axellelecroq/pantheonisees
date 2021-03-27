@@ -1,6 +1,6 @@
-from .app.app import *
-from .app.modeles.user import User
-from .app.modeles.data import Pantheonises
+from app.app import config_app, login, db
+from app.modeles.data import Pantheonises
+from app.modeles.user import User
 
 from unittest import TestCase
 
@@ -21,8 +21,8 @@ from unittest import TestCase
 
 class Base(TestCase):
     # Configuration de la base de données :
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./db_test.db"
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
+    # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./db_test.db"
+    # app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
     pantheonises = [
         Pantheonises(
@@ -50,9 +50,9 @@ class Base(TestCase):
     ]
 
     def setUp(self):
-        self.app = app
-        self.client = app.test_client()
+        self.app = config_app("test")
         self.db = db
+        self.client = self.app.test_client()
         self.db.create_all(app=self.app)
 
     def tearDown(self):
