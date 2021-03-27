@@ -98,7 +98,7 @@ class TestUser(Base):
 class TestPantheonises(Base):
     """ Unit tests for Pantheonises """
 
-    def test_pantheonises_is_added(self):
+    def test_pantheonise_is_added(self):
         with self.app.app_context():
             self.insert_pantheonises(self.pantheonises)
 
@@ -107,7 +107,8 @@ class TestPantheonises(Base):
         self.assertEqual(person.name, "Marat")
         self.assertEqual(person.birth, 1743)
 
-    def test_get_pantheonises(self):
+
+    def test_response_for_pantheonise(self):
         with self.app.app_context():
             self.insert_pantheonises(self.pantheonises)
 
