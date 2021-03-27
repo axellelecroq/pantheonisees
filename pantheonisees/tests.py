@@ -25,28 +25,26 @@ class Base(TestCase):
     # app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
     pantheonises = [
-        Pantheonises(
-            id=101,
-            name="Riqueti de Mirabeau",
-            firstname="Honoré-Gabriel",
-            status="diplomate, journaliste et homme politique français",
-            pantheonisation=1792,
-            birth=1749,
-            death=1791,
-            sex="homme",
-            wiki_link="https://fr.wikipedia.org/wiki/Honor%C3%A9-Gabriel_Riqueti_de_Mirabeau",
-        ),
-        Pantheonises(
-            id=102,
-            name="Marat",
-            firstname="Jean-Paul",
-            status="dmédecin, physicien, journaliste et homme politique français, révolutionnaire",
-            pantheonisation=1793,
-            birth=1743,
-            death=1793,
-            sex="homme",
-            wiki_link="https://fr.wikipedia.org/wiki/Jean-Paul_Marat",
-        ),
+        {
+            "name": "Marat",
+            "firstname": "Jean-Paul",
+            "birth_date": "1743",
+            "death_date": "1793",
+            "pantheonisation": "1793",
+            "status": "médecin, physicien, journaliste et homme politique français, révolutionnaire",
+            "wikipedia": "https://fr.wikipedia.org/wiki/Jean-Paul_Marat",
+            "sex": "homme",
+        },
+        {
+            "name": "Riqueti de Mirabeau",
+            "firstname": "Honoré-Gabriel",
+            "birth_date": "1749",
+            "death_date": "1791",
+            "pantheonisation": "1792",
+            "status": "diplomate, journaliste et homme politique français",
+            "wikipedia": "https://fr.wikipedia.org/wiki/Honor%C3%A9-Gabriel_Riqueti_de_Mirabeau",
+            "sex": "homme",
+        },
     ]
 
     def setUp(self):
@@ -103,31 +101,6 @@ class TestUser(Base):
 
 class TestPantheonises(Base):
     """ Unit tests for Pantheonises """
-
-    pantheonises = [
-        Pantheonises(
-            id=101,
-            name="Riqueti de Mirabeau",
-            firstname="Honoré-Gabriel",
-            status="diplomate, journaliste et homme politique français",
-            pantheonisation=1792,
-            birth=1749,
-            death=1791,
-            sex="homme",
-            wiki_link="https://fr.wikipedia.org/wiki/Honor%C3%A9-Gabriel_Riqueti_de_Mirabeau",
-        ),
-        Pantheonises(
-            id=102,
-            name="Marat",
-            firstname="Jean-Paul",
-            status="médecin, physicien, journaliste et homme politique français, révolutionnaire",
-            pantheonisation=1793,
-            birth=1743,
-            death=1793,
-            sex="homme",
-            wiki_link="https://fr.wikipedia.org/wiki/Jean-Paul_Marat",
-        ),
-    ]
 
     def test_pantheonises_is_added(self):
         with self.app.app_context():
