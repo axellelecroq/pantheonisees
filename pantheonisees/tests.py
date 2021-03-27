@@ -26,27 +26,28 @@ class Base(TestCase):
 
     pantheonises = [
         Pantheonises(
-            id = 101,
-            name = "Riqueti de Mirabeau",
-            firstname = "Honoré-Gabriel",
-            status = "diplomate, journaliste et homme politique français",
-            pantheonisation = 1792,
-            birth = 1749,
-            death = 1791,
-            sex = "homme",
-            wiki_link = "https://fr.wikipedia.org/wiki/Honor%C3%A9-Gabriel_Riqueti_de_Mirabeau",
-        ), 
+            id=101,
+            name="Riqueti de Mirabeau",
+            firstname="Honoré-Gabriel",
+            status="diplomate, journaliste et homme politique français",
+            pantheonisation=1792,
+            birth=1749,
+            death=1791,
+            sex="homme",
+            wiki_link="https://fr.wikipedia.org/wiki/Honor%C3%A9-Gabriel_Riqueti_de_Mirabeau",
+        ),
         Pantheonises(
-            id =102,
-            name = "Marat",
-            firstname = "Jean-Paul",
-            status = "dmédecin, physicien, journaliste et homme politique français, révolutionnaire",
-            pantheonisation = 1793,
-            birth = 1743,
-            death = 1793,
-            sex = "homme",
-            wiki_link = "https://fr.wikipedia.org/wiki/Jean-Paul_Marat",
-        )]
+            id=102,
+            name="Marat",
+            firstname="Jean-Paul",
+            status="dmédecin, physicien, journaliste et homme politique français, révolutionnaire",
+            pantheonisation=1793,
+            birth=1743,
+            death=1793,
+            sex="homme",
+            wiki_link="https://fr.wikipedia.org/wiki/Jean-Paul_Marat",
+        ),
+    ]
 
     def setUp(self):
         self.app = app
@@ -68,6 +69,7 @@ class Base(TestCase):
 
 class TestUser(Base):
     """ Unit tests for Users """
+
     def test_registration(self):
         with self.app.app_context():
             # Afin d'illustrer ce qui a été mentionné plus haut,
@@ -78,27 +80,25 @@ class TestUser(Base):
 
             # Arrange
             statut = User.inscription(
-                identifiant="helloworld",
-                motdepasse="helloworld1",
-                mail="hello.world@chartes.psl.eu",
+                "helloworld", "helloworld1", "hello.world@chartes.psl.eu"
             )
-                      
-            user = User.query.filter(User.email == "hello.world@chartes.psl.eu").first()
-        self.assertEqual(user.username, "helloworld")
-        self.assertNotEqual(user.password, "helloworld1")
+
             # Act
+            db_user = User.query.filter(
+                User.email == "hello.world@chartes.psl.eu"
+            ).first()
+
         # Assert
+        self.assertEqual(db_user.username, "helloworld")
+        self.assertNotEqual(db_user.password, "helloworld1")
         self.assertTrue(statut)
 
-    def test_registration_login(self):
+    def test_login(self):
         with self.app.app_context():
             statut = User.inscription(
-                identifiant="helloworld",
-                motdepasse="helloworld1",
-                mail="hello.world@chartes.psl.eu",
+                "helloworld", "helloworld1", "hello.world@chartes.psl.eu"
             )
 
             user_connected = User.connexion("helloworld", "helloworld1")
-            
+
         self.assertTrue(user_connected)
-        self.assertTrue(statut)
