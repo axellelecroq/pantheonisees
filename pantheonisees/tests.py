@@ -143,5 +143,3 @@ class TestPantheonises(Base):
             left_person = Pantheonises.query.filter(Pantheonises.id).first()
 
         self.assertEqual(left_person.id, 2)
-        self.assertEqual(left_person.name, "Riqueti de Mirabeau")
-
