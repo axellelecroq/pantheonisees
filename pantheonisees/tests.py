@@ -107,7 +107,6 @@ class TestPantheonises(Base):
         self.assertEqual(person.name, "Marat")
         self.assertEqual(person.birth, 1743)
 
-
     def test_response_for_pantheonise(self):
         with self.app.app_context():
             self.insert_pantheonises(self.pantheonises)
@@ -115,4 +114,23 @@ class TestPantheonises(Base):
         r = self.client.get("/person/1")
 
         self.assertEqual(r.status_code, 200)
+
+    def test_count_decreasing_when_pers_deleted(self):
+        with self.app.app_context():
+            self.insert_pantheonises(self.pantheonises)
+
+            Pantheonises.delete_person(1)
+            count = Pantheonises.query.filter(Pantheonises.id).count()
+
+        self.assertEqual(count, 1)
+
+    def test_left_pers_when_pers_deleted(self):
+        with self.app.app_context():
+            self.insert_pantheonises(self.pantheonises)
+
+            Pantheonises.delete_person(1)
+            left_person = Pantheonises.query.filter(Pantheonises.id).first()
+
+        self.assertEqual(left_person.id, 2)
+        self.assertEqual(left_person.name, "Riqueti de Mirabeau")
 
