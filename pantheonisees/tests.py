@@ -20,10 +20,6 @@ from unittest import TestCase
 
 
 class Base(TestCase):
-    # Configuration de la base de données :
-    # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./db_test.db"
-    # app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
-
     pantheonises = [
         {
             "name": "Marat",
