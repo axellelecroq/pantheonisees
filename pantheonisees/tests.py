@@ -12,7 +12,7 @@ from unittest import TestCase
 # est l'un de ses plus grands avantages : une fois habitué·e à
 # ce modèle, on peut lire et comprendre les tests plus facilement.
 # Ce qui, à son tour, réduit le coût de maintenance de l'ensemble
-# de notre suite de test.
+# de notre suite de tests.
 # L'article en question :
 # https://freecontent.manning.com/making-better-unit-tests-part-1-the-aaa-pattern/
 
@@ -61,6 +61,7 @@ class Base(TestCase):
 class TestUser(Base):
     """ Unit tests for Users """
 
+    # Test d'inscription d'un·e utilisateur·rice
     def test_registration(self):
         with self.app.app_context():
             # Afin d'illustrer ce qui a été mentionné plus haut,
@@ -84,6 +85,7 @@ class TestUser(Base):
         self.assertNotEqual(db_user.password, "helloworld1")
         self.assertTrue(statut)
 
+    # Test de connexion d'un·e utilisateur·rice
     def test_login(self):
         with self.app.app_context():
             statut = User.inscription(
@@ -98,6 +100,8 @@ class TestUser(Base):
 class TestPantheonises(Base):
     """ Unit tests for Pantheonises """
 
+    # Test de l'ajout des Panthéonisés-tests
+    # dans la base de données
     def test_pantheonise_is_added(self):
         with self.app.app_context():
             self.insert_pantheonises(self.pantheonises)
@@ -107,6 +111,8 @@ class TestPantheonises(Base):
         self.assertEqual(person.name, "Marat")
         self.assertEqual(person.birth, 1743)
 
+    # Test d'une réponse HTTP pour un·e panthéonisé·e
+    # enregistrée dans la base de données
     def test_response_for_pantheonise(self):
         with self.app.app_context():
             self.insert_pantheonises(self.pantheonises)
@@ -115,6 +121,9 @@ class TestPantheonises(Base):
 
         self.assertEqual(r.status_code, 200)
 
+    # Test si le nombre de panthéonisé·e·s diminue
+    # une fois qu'un·e panthéonisé·e ait été supprimé·e
+    # de la base de données
     def test_count_decreasing_when_pers_deleted(self):
         with self.app.app_context():
             self.insert_pantheonises(self.pantheonises)
@@ -124,6 +133,8 @@ class TestPantheonises(Base):
 
         self.assertEqual(count, 1)
 
+    # Test de l'id de la première personne panthéonisée enregistrée
+    # une fois que le·la panthéonisé·e ayant l'id 1 ait été supprimé·e
     def test_left_pers_when_pers_deleted(self):
         with self.app.app_context():
             self.insert_pantheonises(self.pantheonises)
