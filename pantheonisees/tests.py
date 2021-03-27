@@ -1,6 +1,6 @@
-from app.app import config_app, login, db
-from app.modeles.data import Pantheonises
-from app.modeles.user import User
+from .app.app import config_app, login, db
+from .app.modeles.data import Pantheonises
+from .app.modeles.user import User
 
 from unittest import TestCase
 
@@ -58,13 +58,10 @@ class Base(TestCase):
     def tearDown(self):
         self.db.drop_all(app=self.app)
 
-    def insert_all(self, pantheonises):
-        # On donne à notre DB le contexte d'exécution
+    def insert_pantheonises(self, pantheonises):
         with self.app.app_context():
-            if pantheonises:
-                for fixture in self.pantheonises:
-                    self.db.session.add(fixture)
-            self.db.session.commit()
+            for person in pantheonises:
+                Pantheonises.add_new_person(person)
 
 
 class TestUser(Base):
@@ -102,3 +99,45 @@ class TestUser(Base):
             user_connected = User.connexion("helloworld", "helloworld1")
 
         self.assertTrue(user_connected)
+
+
+class TestPantheonises(Base):
+    """ Unit tests for Pantheonises """
+
+    pantheonises = [
+        Pantheonises(
+            id=101,
+            name="Riqueti de Mirabeau",
+            firstname="Honoré-Gabriel",
+            status="diplomate, journaliste et homme politique français",
+            pantheonisation=1792,
+            birth=1749,
+            death=1791,
+            sex="homme",
+            wiki_link="https://fr.wikipedia.org/wiki/Honor%C3%A9-Gabriel_Riqueti_de_Mirabeau",
+        ),
+        Pantheonises(
+            id=102,
+            name="Marat",
+            firstname="Jean-Paul",
+            status="médecin, physicien, journaliste et homme politique français, révolutionnaire",
+            pantheonisation=1793,
+            birth=1743,
+            death=1793,
+            sex="homme",
+            wiki_link="https://fr.wikipedia.org/wiki/Jean-Paul_Marat",
+        ),
+    ]
+
+    def test_pantheonises_is_added(self):
+        with self.app.app_context():
+            for fixture in self.pantheonises:
+                self.db.session.add(fixture)
+            self.db.session.commit()
+
+            person = Pantheonises.query.filter(
+                Pantheonises.id == 102
+            ).first()
+
+        self.assertEqual(person.name, "Marat")
+        self.assertEqual(person.birth, 1743)
