@@ -66,8 +66,8 @@ class Base(TestCase):
     def insert_pantheonises(self, pantheonises):
         # Contexte d'exécution donné à la DB
         with self.app.app_context():
-            for person in pantheonises:
-                Pantheonises.add_new_person(person)
+            for p in pantheonises:
+                Pantheonises.add_new_person(p)
 
 
 class TestUser(Base):
@@ -118,10 +118,10 @@ class TestPantheonises(Base):
         with self.app.app_context():
             self.insert_pantheonises(self.pantheonises)
 
-            person = Pantheonises.query.filter(Pantheonises.id == 1).first()
+            p = Pantheonises.query.filter(Pantheonises.id == 1).first()
 
-        self.assertEqual(person.name, "Marat")
-        self.assertEqual(person.birth, 1743)
+        self.assertEqual(p.name, "Marat")
+        self.assertEqual(p.birth, 1743)
 
     # Test d'une réponse HTTP pour un·e panthéonisé·e
     # enregistrée dans la base de données
@@ -152,9 +152,9 @@ class TestPantheonises(Base):
             self.insert_pantheonises(self.pantheonises)
 
             Pantheonises.delete_person(1)
-            left_person = Pantheonises.query.filter(Pantheonises.id).first()
+            left_p = Pantheonises.query.filter(Pantheonises.id).first()
 
-        self.assertEqual(left_person.id, 2)
+        self.assertEqual(left_p.id, 2)
 
     # Test d'une mise à jour des informations d'un·e panthéonisé·e
     # dans la base de données
