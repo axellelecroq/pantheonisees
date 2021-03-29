@@ -10,7 +10,7 @@ from ..modeles.data import *
 """
 /person/<id>
 /person/create
-/person/<id>/modification
+/person/<id>/update
 /person/<id>/delete
 
 """
@@ -106,7 +106,7 @@ def create_person():
         return render_template("pages/person_create.html")
 
 
-@app.route("/person/<int:person_id>/modification", methods=["GET", "POST"])
+@app.route("/person/<int:person_id>/update", methods=["GET", "POST"])
 def update_person(person_id):
     """
     Route permettant d'actualiser les informations d'une personne panthéonisée.
