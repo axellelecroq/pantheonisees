@@ -143,3 +143,25 @@ class TestPantheonises(Base):
             left_person = Pantheonises.query.filter(Pantheonises.id).first()
 
         self.assertEqual(left_person.id, 2)
+
+    # Test d'une mise à jour des informations d'un·e panthéonisé·e
+    # dans la base de données
+    def test_update_infos_pantheonises(self):
+        with self.app.app_context():
+            self.insert_pantheonises(self.pantheonises)
+            new_infos = {
+            "birth_date": "1750", # Élément modifié, initialement : 1749
+            "death_date": "1791",
+            "pantheonisation": "1792",
+            "status": "Homme politique", # Élement modifié, initialement : "diplomate, journaliste et homme politique français"
+            "wikipedia": "https://fr.wikipedia.org/wiki/Honor%C3%A9-Gabriel_Riqueti_de_Mirabeau",
+            "sex": "homme",
+            }
+
+            Pantheonises.add_required_info(2, new_infos)
+            p = Pantheonises.query.filter(Pantheonises.id == 2).first()
+
+        self.assertEqual(p.id, 2)
+        self.assertNotEqual(p.birth, 1749)
+        self.assertEqual(p.pantheonisation, 1792)
+        self.assertEqual(p.status, "Homme politique")
