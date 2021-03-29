@@ -16,10 +16,14 @@ from unittest import TestCase
 # L'article en question :
 # https://freecontent.manning.com/making-better-unit-tests-part-1-the-aaa-pattern/
 
-# pour lancer les tests : python -m unittest discover
+# Pour lancer les tests :
+# 1. Être au  niveau du fichier requirements.txt
+# 2. Lancer : python -m unittest discover
 
 
 class Base(TestCase):
+    # Les données tests, appelées aussi fixtures sont enregistrées
+    # dans un dictionnaire, eux-mêmes enregistrés dans une liste.
     pantheonises = [
         {
             "name": "Marat",
@@ -43,16 +47,24 @@ class Base(TestCase):
         },
     ]
 
+    # D'après la documentation, il est généralement conseillé
+    # de créer et de supprimer les fixtures à chaque
+    # exécution de test, afin de garantir des tests propres.
+    # Lire la partie "Testing with SQLAlchemy" : https://pythonhosted.org/Flask-Testing/
     def setUp(self):
+        # Configuration de la base de données-test
         self.app = config_app("test")
         self.db = db
         self.client = self.app.test_client()
         self.db.create_all(app=self.app)
 
     def tearDown(self):
+        # Les fixtures sont supprimés de la base de données-test
+        # une fois que tous les tests ont été effectué.
         self.db.drop_all(app=self.app)
 
     def insert_pantheonises(self, pantheonises):
+        # Contexte d'exécution donné à la DB
         with self.app.app_context():
             for person in pantheonises:
                 Pantheonises.add_new_person(person)
@@ -150,18 +162,18 @@ class TestPantheonises(Base):
         with self.app.app_context():
             self.insert_pantheonises(self.pantheonises)
             new_infos = {
-            "birth_date": "1750", # Élément modifié, initialement : 1749
-            "death_date": "1791",
-            "pantheonisation": "1792",
-            "status": "Homme politique", # Élement modifié, initialement : "diplomate, journaliste et homme politique français"
-            "wikipedia": "https://fr.wikipedia.org/wiki/Honor%C3%A9-Gabriel_Riqueti_de_Mirabeau",
-            "sex": "homme",
+                "birth_date": "1750",  # Élément modifié, initialement : 1749
+                "death_date": "1791",
+                "pantheonisation": "1792",
+                "status": "Homme politique",  # Élement modifié, initialement : "diplomate, journaliste et homme politique français"
+                "wikipedia": "https://fr.wikipedia.org/wiki/Honor%C3%A9-Gabriel_Riqueti_de_Mirabeau",
+                "sex": "homme",
             }
 
             Pantheonises.add_required_info(2, new_infos)
             p = Pantheonises.query.filter(Pantheonises.id == 2).first()
 
         self.assertEqual(p.id, 2)
-        self.assertNotEqual(p.birth, 1749)
         self.assertEqual(p.pantheonisation, 1792)
         self.assertEqual(p.status, "Homme politique")
+        self.assertNotEqual(p.birth, 1749)
