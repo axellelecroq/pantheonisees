@@ -28,7 +28,7 @@ def person(person_id):
     :rtype: template
     """
     if person_id:
-        # Éxecution de la requête en fonction de l'ID de la personne
+        # Récupération de la personne en fonction de son ID
         person = Pantheonises.query.filter(Pantheonises.id == person_id).first()
 
         # Récupération de l'url afin de créer un lien vers la page
@@ -36,7 +36,6 @@ def person(person_id):
         referrer = request.referrer
 
         return render_template("pages/person.html", result=person, back_page=referrer)
-
     else:
         return render_template("errors/404.html"), 404
 
@@ -52,6 +51,7 @@ def create_person():
     """
     if request.method.lower() == "post":
 
+        # Stockage des informations du formation dans un dict
         form_infos = {
             "name": request.form.get("name"),
             "firstname": request.form.get("firstname"),
@@ -82,7 +82,10 @@ def create_person():
             return render_template("pages/person_create.html", infos=form_infos)
 
         # Vérification qu'il y ait bien que des chiffres dans les dates
-        # Si il y a une lettre, alors un message d'erreur est envoyé à l'utilisateur·rice
+        # Cela est important car les dates sont enregistrés en tant qu'integer
+        # dans la DB et on reçoit une chaîne de caractère par le formulaire.
+        # Il faut pouvoir parser la string en integer. Ainsi, s'il y a une lettre,
+        # un message d'erreur est alors envoyé à l'utilisateur·rice
         if (
             Pantheonises.is_date(form_infos["birth_date"]) == False
             or Pantheonises.is_date(form_infos["death_date"]) == False
@@ -161,7 +164,10 @@ def update_person(person_id):
             return render_template("pages/person_update.html", result=person)
 
         # Vérification qu'il y ait bien que des chiffres dans les dates
-        # Si il y a une lettre, alors un message d'erreur est envoyé à l'utilisateur·rice
+        # Cela est important car les dates sont enregistrés en tant qu'integer
+        # dans la DB et on reçoit une chaîne de caractère par le formulaire.
+        # Il faut pouvoir parser la string en integer. Ainsi, s'il y a une lettre,
+        # un message d'erreur est alors envoyé à l'utilisateur·rice
         if (
             Pantheonises.is_date(form_infos["birth_date"]) == False
             and Pantheonises.is_date(form_infos["death_date"]) == False
@@ -171,17 +177,17 @@ def update_person(person_id):
                 "Une des dates obligatoires entrées n'est pas valide.", category="error"
             )
             return render_template("pages/person_update.html", result=person)
-        # Si non, les informations sont enregistrées dans la base de données.
+        # Si aucune erreur, alors les informations sont enregistrées dans la base de données.
         else:
             Pantheonises.add_required_info(person_id, form_infos)
 
-            ## LES IMAGES ##
-        ## Pour le portrait :
+        ## LES IMAGES ##
+        # Pour le portrait :
         if request.files["portraitFile"]:
-            # Récuperation du fichier
+            # 1.Récuperation du fichier
             portrait_file = request.files["portraitFile"]
 
-            # Renommage du fichier
+            # 2. Renommage du fichier
             # Les espaces dans le(s) prénom(s) et nom(s) sont remplacés
             # par des tirets.
             name = unidecode.unidecode(person.name.replace(" ", "-").lower())
@@ -189,42 +195,39 @@ def update_person(person_id):
             # Le(s) prénom(s) et nom(s) sont séparés par un underscore.
             portrait_file.filename = "{}_{}.jpg".format(name, firstname)
 
-            # Enregistrement du fichier  dans l'application
+            # 3. Enregistrement du fichier dans l'application
             Images.upload_image(portrait_file)
 
-            # Création de la chaîne de charactère pour le chemin vers l'image
-            # Si aucun n'est déjà enregistré
+            # 4. Création de la chaîne de charactères pour le
+            # chemin vers l'image si aucun n'est déjà enregistré
             if not form_infos["p_path"]:
                 form_infos["p_path"] = "/static/images/" + portrait_file.filename
 
         if request.files["tombFile"]:
-            ## Mêmes étapes pour la tombe que précédemment à savoir :
-            # 1. Renommage du nom du fichier afin qu'il soit enregistré dans la base
-            # 2. Enregistrement du fichier dans l'application
-            # 3. Création du nom du chemin vers l'image si aucun n'est déjà enregistré
-            # 4. Enregistrement des données vers la base
-
+            # Mêmes étapes pour la tombe que pour le portrait:
             # 1.
             tomb_file = request.files["tombFile"]
+
+            # .2
             name = unidecode.unidecode(person.name.replace(" ", "-").lower())
             firstname = unidecode.unidecode(person.firstname.replace(" ", "-").lower())
             tomb_file.filename = "{}_{}_tomb.jpg".format(name, firstname)
 
-            # 2.
+            # 3.
             Images.upload_image(tomb_file)
 
-            # 3.
+            # 4.
             if not form_infos["t_path"]:
                 form_infos["t_path"] = "/static/images/" + tomb_file.filename
 
-        # 4.
+        # Enregistrement des informations du portrait et de la tombe dans la DB
         Images.add_data_images(person_id, form_infos)
 
         # L'opération a été effectuée avec succès.
         flash("Les modifications ont bien été ajoutées.", category="success")
         return render_template("pages/person.html", result=person)
 
-    # Si aucune requête "post" n'est faite, il s'agit alors que l'affichage
+    # Si aucune requête "post" n'est faite, il s'agit alors de l'affichage
     # des données de la personne panthéonisée :
     elif person_id:
         # Récupération des données
@@ -249,14 +252,14 @@ def delete_person(person_id):
     p = Pantheonises.query.filter(Pantheonises.id == person_id).first()
     name = p.name + " " + p.firstname
 
-    # Suppression des images si image(s) enregistrée(s)
+    # Suppression des images dans l'application si image(s) enregistrée(s)
     if p.image_id:
         if p.image_id.portrait_path:
             os.remove("app" + p.image_id.portrait_path)
         if p.image_id.tomb_path:
             os.remove("app" + p.image_id.tomb_path)
 
-    # Suppression de la personne dans la base de données
+    # Suppression de la personne dans la DB
     Pantheonises.delete_person(person_id)
 
     # Envoi du message d'information à l'utilisateur·rice
