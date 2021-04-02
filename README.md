@@ -61,7 +61,7 @@ Accessibles à tou·te·s :
 - découvrir les visualisations de données
 
 Disponibles seulement pour les personnes ayant crée un compte :
-- ajouter un·e Panthéonisé·e
+- ajouter et supprimer un·e Panthéonisé·e
 - modifier les informations actuelles enregistrées d'un·e Panthéonisé·e
 - ajouter des photographies à un·e Panthéonisé·e
 
