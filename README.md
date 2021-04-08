@@ -67,7 +67,7 @@ Disponibles seulement pour les personnes ayant crée un compte :
 
 :film_strip: Vous pouvez visionner la vidéo de 2min présentant les fonctionnalités en cliquant sur la photo.
 
-:information_source: Ce n'est pas un enregistrement optimal puisque le contraste est un peu fort et ne permet pas de reconnaître parfaitement les différents liens sur l'application ainsi que les menus déroulants du formulaire de recherche. 
+:information_source: L'enregistrement n'est pas optimal puisque le contraste est un peu fort et ne permet pas de reconnaître parfaitement les différents liens sur l'application. Aussi, les menus déroulants du formulaire de recherche n'apparaissent pas dans l'enregistrement. Néanmoins, cette vidéo permet d'avoir un bel aperçu des fonctionnalités de l'application et du design de celle-ci.
 [![plot](./documentation/site_presentation.png)](https://user-images.githubusercontent.com/60888306/114012668-ec17c900-9866-11eb-9589-ee42c555e45d.mp4)
 
 ## Installer et lancer l'application
