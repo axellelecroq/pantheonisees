@@ -36,7 +36,7 @@ var trace1 = {
         color: 'rgb(8,48,107)'
     },
     text: [
-        "", "", "", "", "", "", "Sophie Berthelot", "Simone Veil", "", "Geneviève de Gaulle-Anthonioz, Germaine Tillion", "", "Marie Curie"
+        "", "", "", "", "", "", "Sophie Berthelot", "Simone Veil", "", "Geneviève de Gaulle-Anthonioz, Germaine Tillion", "", "Marie Curie, Sophie Berthelot"
     ],
     hovertemplate: "<b>%{x}</b><br><br>" +
         "Nombre: %{y}<br>" +
