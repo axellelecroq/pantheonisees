@@ -2,11 +2,11 @@
 ### À propos
 Cette application web a été développée par [Axelle Lecroq](https://github.com/axellelecroq) dans le cadre du Master TNAH de l'[École nationale des chartes](http://www.chartes.psl.eu/fr/cursus/master-technologies-numeriques-appliquees-histoire).
 
-Les données exploitées sur ce site sont majoritairement issues d'un set de données publique et accessible sur
+Les données exploitées sur le site sont issues d'un set de données publique et accessible sur
 [data.gouv](https://www.data.gouv.fr/fr/datasets/pantheonises/). Malgré tout, les dernières personnes inhumées au Panthéon ont été ajoutées par mes soins, ainsi que les liens vers les pages wikipédia et quelques photographies.
-Ce site a été dévéloppé avec Flask, framework open-source de développement web en Python. Néanmoins les languages CSS et HTML ont été largement utilisés pour le front-end du site. De nombreux éléments proviennent notamment de la collection d'outils Bootstrap. La base de données a été constituée à partir de SQLite et est gérée, au sein de la programmation, grâce à l'ORM SQLAlchemy.
+Ce site a été dévéloppé avec Flask, framework open-source de développement web en Python. Néanmoins les languages CSS et HTML ont été largement utilisés pour le front-end du site ainsi que JavaScript pour les visualisations de données avec notamment la librairie Plotly. De nombreux éléments proviennent également de la collection d'outils Bootstrap. La base de données a été constituée à partir de SQLite et est gérée, au sein de la programmation, grâce à l'ORM SQLAlchemy.
 
-En cas de problème avec l'utilisation de la base ou pour toute demande d’information supplémentaire, n’hésitez pas à me contacter.
+En cas de problème avec l'utilisation de la base ou pour toute information supplémentaire, n’hésitez pas à me contacter.
 
 ### La structure
 ```
@@ -57,7 +57,7 @@ pantheonisees
 
 ### Les fonctionnalités
 Accessibles à tou·te·s :
-- découvrir les personnes inhumées au Panthéon
+- effectuer une recherche dans la base de données des personnes panthéonisées
 - découvrir les visualisations de données
 
 Disponibles seulement pour les personnes ayant crée un compte :
@@ -65,9 +65,9 @@ Disponibles seulement pour les personnes ayant crée un compte :
 - modifier les informations actuelles enregistrées d'un·e Panthéonisé·e
 - ajouter des photographies à un·e Panthéonisé·e
 
-:film_strip: Vous pouvez visionner la vidéo de 2min présentant les fonctionnalités en cliquant sur la photo.
+:film_strip: Vous pouvez visionner une vidéo de 2min présentant les fonctionnalités en cliquant sur la capture d'écran ci-dessous.
 
-:information_source: L'enregistrement n'est pas optimal puisque le contraste est un peu fort et ne permet pas de reconnaître parfaitement les différents liens sur l'application. Aussi, les menus déroulants du formulaire de recherche n'apparaissent pas dans l'enregistrement. Néanmoins, cette vidéo permet d'avoir un bel aperçu des fonctionnalités de l'application et du design de celle-ci.
+:information_source: L'enregistrement n'est pas optimal puisque le contraste est un peu fort et ne permet pas de reconnaître parfaitement les différents liens sur l'application. Aussi, les menus déroulants du formulaire de recherche n'apparaissent pas dans l'enregistrement. Néanmoins, cette vidéo permet d'avoir un bel aperçu des fonctionnalités de l'application et du front-end de celle-ci.
 [![plot](./documentation/site_presentation.png)](https://user-images.githubusercontent.com/60888306/114012668-ec17c900-9866-11eb-9589-ee42c555e45d.mp4)
 
 ## Installer et lancer l'application
