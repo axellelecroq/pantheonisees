@@ -73,14 +73,14 @@ Pré-requis : python3
 
 1. Cloner ce dépôt git : `git clone https://github.com/axellelecroq/pantheonisees.git` et rentrer dedans
 2. Installer un environnement virtuel : `virtualenv -p python3 env` 
-3. Activer l'environnement virtuel via `source ~/env/bin/activate`
-4. Installer requirements.txt : `pip install -r requirements.txt`
-5. Lancer l'application : `python3 pantheonisees/run.py`
+3. Activer l'environnement virtuel via `source env/bin/activate`
+4. Installer requirements.txt : rentrer dans le dossier `pantheonisees` et effectuer la commande `pip install -r requirements.txt`
+5. Lancer l'application : aller au niveau du fichier `run.py` et lancer `python3 run.py`
 
 ### Lancement 
 1. Aller dans le dossier de l'application
-2. Activez le virtualenv : `source ~/env/bin/activate`
-3. Lancer l'application : `python3 pantheonisees/run.py`
+2. Activez le virtualenv : `source env/bin/activate`
+3. Lancer l'application : aller au niveau du fichier `run.py` et lancer `python3 run.py`
 
 ### Les tests 
 Pour lancer les tests de l'application:
