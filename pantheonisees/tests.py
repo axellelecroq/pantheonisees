@@ -112,7 +112,7 @@ class TestUser(Base):
 class TestPantheonises(Base):
     """ Unit tests for Pantheonises """
 
-    # Test de l'ajout des Panthéonisés-tests
+    # Test de l'ajout des fixtures panthéonisées
     # dans la base de données
     def test_pantheonise_is_added(self):
         with self.app.app_context():
