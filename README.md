@@ -67,9 +67,14 @@ Disponibles seulement pour les personnes ayant crée un compte :
 
 
 Une courte vidéo de 2min présentant les fonctionnalités.
+
 :information_source: Ce n'est pas un enregistrement optimal puisque le contraste est un peu fort et ne permet pas de reconnaître parfaitement les différents liens sur l'application ainsi que les menus déroulants du formulaire de recherche. 
 
-https://user-images.githubusercontent.com/60888306/114012668-ec17c900-9866-11eb-9589-ee42c555e45d.mp4
+
+![Demo](https://user-images.githubusercontent.com/60888306/114018060-1cfafc80-986d-11eb-81e0-ff091731c63c.mp4)
+
+
+
 
 
 
