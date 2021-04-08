@@ -28,7 +28,7 @@ db = SQLAlchemy(app)
 # Imports locaux
 from .modeles.data import *
 from .modeles.user import *
-from .routes import general, search, errors, user, crud_person
+from .routes import generic, search, errors, user, crud_person
 
 
 def config_app(config_name="test"):

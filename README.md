@@ -16,11 +16,11 @@ pantheonisees
     │   │       ├── data.py
     │   │       └── user.py
     │   ├── routes
-    │   │       ├── connexion.py
     │   │       ├── crud_person.py
     │   │       ├── errors.py
-    │   │       ├── general.py
-    │   │       └── search.py
+    │   │       ├── generic.py
+    │   │       ├── search.py
+    │   │       └── user.py
     │   ├── static
     │   │       ├── css/...
     │   │       ├── images/...
