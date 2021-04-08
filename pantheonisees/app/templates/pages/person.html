@@ -41,7 +41,7 @@
             <div class="rounded float-right">
                 {% if result.image_id.portrait_path %}
                 <p><img src="{{ result.image_id.portrait_path }} " width="150px"></p>
-                <p class="legendText">{% if result.image_id.desc %}{{result.image_id.portrait_desc}} {%else%} Portrait de {{result.name}} {{result.firstname}}{% endif %} {%if result.image_id.date %} en {{result.image_id.date}}{% endif %}
+                <p class="legendText">{% if result.image_id.portrait_desc %}{{result.image_id.portrait_desc}} {%else%} Portrait de {{result.name}} {{result.firstname}}{% endif %} {%if result.image_id.date %} en {{result.image_id.date}}{% endif %}
                 </p> {% endif %}</div>
             {% if result.image_id.tomb_path %}
             <div class="rounded float-right">
