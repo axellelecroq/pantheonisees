@@ -47,10 +47,10 @@ class Pantheonises(db.Model):
         dans la base de données.
         :param infos : list
         """
-        count = Pantheonises.query.filter(Pantheonises.id).count()
+        last = Pantheonises.query.order_by(Pantheonises.id.desc()).first().id
 
         person = Pantheonises(
-            id=count + 1,
+            id=last + 1,
             name=infos["name"],
             firstname=infos["firstname"],
             status=infos["status"],
@@ -181,7 +181,7 @@ class Images(db.Model):
         :param infos : dict
         """
         p = Pantheonises.query.filter(Pantheonises.id == id).first()
-        count = Images.query.filter(Images.id).count()
+        last = Images.query.order_by(Images.id.desc()).first().id
 
         if p.image_id:
             p.image_id.portrait_path = infos["p_path"]
@@ -193,7 +193,7 @@ class Images(db.Model):
 
         else:
             img = Images(
-                id=count + 1,
+                id=last + 1,
                 pers_id=id,
                 portrait_path=infos["p_path"],
                 portrait_desc=infos["p_desc"],
