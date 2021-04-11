@@ -47,7 +47,10 @@ class Pantheonises(db.Model):
         dans la base de données.
         :param infos : list
         """
-        last = Pantheonises.query.order_by(Pantheonises.id.desc()).first().id
+        if Pantheonises.query.filter(Pantheonises.id).count() == 0:
+            last = 0
+        else:
+            last = Pantheonises.query.order_by(Pantheonises.id.desc()).first().id
 
         person = Pantheonises(
             id=last + 1,
