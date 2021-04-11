@@ -24,6 +24,11 @@ from unittest import TestCase
 class Base(TestCase):
     # Les données tests, appelées aussi fixtures sont enregistrées
     # dans un dictionnaire, eux-mêmes enregistrés dans une liste.
+
+    ## Information:
+    # Les fixtures sont toutes des personnes qui ont été inhumées
+    # au Panthéon mais ont été par la suite exclues à cause d'une
+    #  indignité révélée après leur mort ou des aléas de l'Histoire.
     pantheonises = [
         {
             "name": "Marat",
@@ -177,3 +182,24 @@ class TestPantheonises(Base):
         self.assertEqual(p.pantheonisation, 1792)
         self.assertEqual(p.status, "Homme politique")
         self.assertNotEqual(p.birth, 1749)
+
+    def test_id_when_not_last_pers_was_deleted(self):
+        with self.app.app_context():
+            self.insert_pantheonises(self.pantheonises)
+            Pantheonises.delete_person(1)
+            lepeletier = {
+                "name": "Lepeletier de Saint-Fargeau",
+                "firstname": "Louis-Michel",
+                "birth_date": "1760",
+                "death_date": "1793",
+                "pantheonisation": "1793",
+                "status": "Homme politique et juriste français",
+                "wikipedia": "https://fr.wikipedia.org/wiki/Louis-Michel_Lepeletier_de_Saint-Fargeau",
+                "sex": "homme",
+            }
+            Pantheonises.add_new_person(lepeletier)
+
+            p = Pantheonises.query.order_by(Pantheonises.id.desc()).first()
+
+            self.assertEqual(p.id, 3)
+            self.assertNotEqual(p.id, 2)
