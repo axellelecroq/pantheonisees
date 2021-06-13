@@ -1,14 +1,14 @@
-## Le projet
-### À propos
-Cette application web a été développée par [Axelle Lecroq](https://github.com/axellelecroq) dans le cadre du Master TNAH de l'[École nationale des chartes](http://www.chartes.psl.eu/fr/cursus/master-technologies-numeriques-appliquees-histoire).
+> Pour lire ces informations en français, [cliquez ici](README_french.md).
 
-Les données exploitées sur le site sont issues d'un set de données publique et accessible sur
-[data.gouv](https://www.data.gouv.fr/fr/datasets/pantheonises/). Malgré tout, les dernières personnes inhumées au Panthéon ont été ajoutées par mes soins, ainsi que les liens vers les pages wikipédia et quelques photographies.
-Ce site a été dévéloppé avec Flask, framework open-source de développement web en Python. Néanmoins les languages CSS et HTML ont été largement utilisés pour le front-end du site ainsi que JavaScript pour les visualisations de données avec notamment la librairie Plotly. De nombreux éléments proviennent également de la collection d'outils Bootstrap. La base de données a été constituée à partir de SQLite et est gérée, au sein de la programmation, grâce à l'ORM SQLAlchemy.
+## The project
+### About
+This web app is developp by [Axelle Lecroq](https://github.com/axellelecroq) as part of the Master "Technologies appliquées à l'Histoire" of the [École nationale des chartes](http://www.chartes.psl.eu/fr/cursus/master-technologies-numeriques-appliquees-histoire).
 
-En cas de problème avec l'utilisation de la base ou pour toute information supplémentaire, n’hésitez pas à me contacter.
+The data used on the website comes from a public dataset available on [data.gouv](https://www.data.gouv.fr/fr/datasets/pantheonises/). However, the last persons buried in the Panthéon were added by myself, as well as the links to wikipedia pages and some photographs. This app was developed with Flask, an open-source web development framework in Python. However, CSS and HTML were widely used for the app's front-end as well as JavaScript for data visualizations with Plotly library. Many elements also come from Bootstrap tool collection. The database was built from SQLite and is managed with the ORM SQLAlchemy.
 
-### La structure
+In case of problems with the use of the database or for any additional information, please contact me.
+
+### Repository's structure
 ```
 pantheonisees
     ├── app
@@ -55,39 +55,41 @@ pantheonisees
     └── tests.py
 ```
 
-### Les fonctionnalités
-Accessibles à tou·te·s :
-- effectuer une recherche dans la base de données des personnes panthéonisées
-- découvrir les visualisations de données
+### Features
 
-Disponibles seulement pour les personnes ayant crée un compte :
-- ajouter et supprimer un·e Panthéonisé·e
-- modifier les informations actuelles enregistrées d'un·e Panthéonisé·e
-- ajouter des photographies à un·e Panthéonisé·e
+Accessible to all:
+- search the database of pantheonised persons
+- discover data visualisations
 
-:film_strip: Vous pouvez visionner une vidéo de 2min présentant les fonctionnalités en cliquant sur la capture d'écran ci-dessous.
+Available only to those who have created an account:
+- add and delete a pantheonised person
+- edit a pantheonised person's current registered informations
+- add photographs to a pantheonised person
 
-:information_source: L'enregistrement n'est pas optimal puisque le contraste est un peu fort et ne permet pas de reconnaître parfaitement les différents liens sur l'application. Aussi, les menus déroulants du formulaire de recherche n'apparaissent pas dans l'enregistrement. Néanmoins, cette vidéo permet d'avoir un bel aperçu des fonctionnalités de l'application et du front-end de celle-ci.
+:film_strip: You can watch a 2mn video introducing the features by clicking on the screenshot below.
+
+:source_information: The recording is not optimal as the contrast is a bit strong and viewers can't perfectly see the links on the app. Also, dropdown menus of the search form do not appear in the recording. Nevertheless, this video gives a good overview of the app's functionalitied and front-end.
 [![plot](./documentation/site_presentation.png)](https://user-images.githubusercontent.com/60888306/114012668-ec17c900-9866-11eb-9589-ee42c555e45d.mp4)
 
-## Installer et lancer l'application
-### Premier lancement
+## Install and launch the app
+### First launch
 
-Pré-requis : python3  
-*Vous pouvez l'installer via ce [site](https://www.python.org/downloads/). Pour rappel : la plupart des systèmes Linux intègrent déjà Python.*
+Prerequisite : python3  
 
-1. Cloner ce dépôt git : `git clone https://github.com/axellelecroq/pantheonisees.git` et rentrer dedans
-2. Installer un environnement virtuel : `virtualenv -p python3 env` 
-3. Activer l'environnement virtuel via `source env/bin/activate`
-4. Installer requirements.txt : rentrer dans le dossier `pantheonisees` et effectuer la commande `pip install -r requirements.txt`
-5. Lancer l'application : aller au niveau du fichier `run.py` et lancer `python3 run.py`
+*You can install it via this [website](https://www.python.org/downloads/). As a reminder: most Linux systems already have Python installed.*
 
-### Lancement 
-1. Aller dans le dossier de l'application
-2. Activez le virtualenv : `source env/bin/activate`
-3. Lancer l'application : aller au niveau du fichier `run.py` et lancer `python3 run.py`
+1. Clone this git repository: `git clone https://github.com/axellelecroq/pantheonisees.git` and enter in the folder
+2. Install a virtual environnement: `virtualenv -p python3 env` 
+3. Activate the virtual env via `source env/bin/activate`
+4. Install `requirements.txt`: renter in the folder `pantheonisees` and use this command line `pip install -r requirements.txt`
+5. Launch the app : go to the level of `run.py` file and run this command line `python3 run.py`
 
-### Les tests 
-Pour lancer les tests de l'application:
-1. Se situer au niveau des fichiers `README.md` et `requirements.txt`
-2. Lancer cette commande : `python -m unittest discover`
+### Launch 
+1. Enter in the app folder
+2. Activate the virtualenv: `source env/bin/activate`
+3. Launch the app : go to the level of `run.py` gile and run this command line `python3 run.py`
+
+### Tests 
+To launch the tests:
+1. Go to the level of `README.md` and `requirements.txt` files
+2. Run this command line: `python -m unittest discover`
