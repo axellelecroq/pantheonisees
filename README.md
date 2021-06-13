@@ -68,7 +68,7 @@ Available only to those who have created an account:
 
 :film_strip: You can watch a 2mn video introducing the features by clicking on the screenshot below.
 
-:source_information: The recording is not optimal as the contrast is a bit strong and viewers can't perfectly see the links on the app. Also, dropdown menus of the search form do not appear in the recording. Nevertheless, this video gives a good overview of the app's functionalitied and front-end.
+:information_source: The recording is not optimal as the contrast is a bit strong and viewers can't perfectly see the links on the app. Also, dropdown menus of the search form do not appear in the recording. Nevertheless, this video gives a good overview of the app's functionalitied and front-end.
 [![plot](./documentation/site_presentation.png)](https://user-images.githubusercontent.com/60888306/114012668-ec17c900-9866-11eb-9589-ee42c555e45d.mp4)
 
 ## Install and launch the app
